@@ -1,0 +1,100 @@
+main {
+    color: white;
+}
+
+.info {
+    display: flex;
+    width: 50%;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.score div {
+    background-color: #0a0430;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+}
+
+.diff {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.bold {
+    font-size: 30px;
+    font-weight: 600;
+}
+
+
+
+.text p{
+    display: flex;
+    flex-direction: column;
+}
+
+.image img {
+    border-radius: 50%;
+    width: 50%;
+    min-width: 100px;
+}
+
+.modify {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.modify div {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.modify input {
+    background-color: white;
+    border-width: 2px 2px 0 2px;
+    border: solid black;
+    color: black;
+    border-radius: 5px;
+    height: 40px;
+    transition: 0.2s ease;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+input:hover {
+    outline: 3px solid #D80027;
+}
+
+input:focus {
+    outline: 3px solid #D80027;
+}
+
+.mail form,
+.password form {
+    display: flex;
+    flex-direction: column;
+}
+
+form button {
+    color: white;
+    background-color: #D80027;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 35px;
+}
+
+@media (max-width : 768px) {
+    .modify {
+        flex-direction: column;
+    }
+}

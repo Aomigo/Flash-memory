@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--the head that imports remixicon's link, aswell as the needed stylesheets-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GAME - Power of memory</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/game.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="icon" href="assets/images/logo.png">
+</head>
+
+<body>
+    <header>
+        <!--the nav composed of 4 elements-->
+        <nav>
+            <div class="logo"> <img src="assets/images/logo.png" alt="logo"><strong>Power of memory</strong></div>
+<div class="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="index.html">Home</a>
+                    <a href="score.html">Score</a>
+                    <a href="account.html">My account</a>
+                    <button>Contact Us</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="main-wrapper">
+            <div class="pres">
+                <h1>The Power Of Memory</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae
+                    sollicitudin.</p>
+            </div>
+            <div class="game-wrapper">
+                <form action="#" method="get">
+                    <div class="difficulty">
+                        <label for="difficulty">Grid Difficulty</label>
+                        <select name="difficulty" id="difficulty">
+                            <option value="easy">4x4</option>
+                            <option value="medium">6x6</option>
+                            <option value="hard">8x8</option>
+                            <option value="impossible">10x10</option>
+                        </select>
+                    </div>
+                    <div class="theme">
+                        <label for="theme">Choose a theme</label>
+                        <select name="theme" id="theme">
+                            <option value="flowers">Flowers</option>
+                            <option value="lord">Lord of the rings</option>
+                            <option value="instruments">instruments</option>
+                        </select>
+                    </div>
+                    <button type="submit">Generate a grid</button>
+                </form>
+                <div class="grid">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/sword.jpg" alt="turned card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                    <img src="assets/images/card.jpg" alt="unturned memory card">
+                </div>
+            </div>
+
+            <section class="section-wrapper">
+                <div class="text-wrapper">
+                    <div>
+                        <h2>Try out a new way to play, <p>OUR way to play.</p>
+                        </h2>
+                    </div>
+                    <div class="min-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor
+                            vitae
+                            sollicitudin. Aliquam lacus augue, rhoncus eget porta et, egestas ut augue.Lorem ipsum dolor
+                            sit
+                            amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae sollicitudin.
+                            Aliquam
+                            lacus augue, rhoncus eget porta et, egestas ut augue.</p>
+                        <p>Find it cool ? Come and play with us now.</p>
+                    </div>
+                    <div class="button-text">
+                        <button class="play_btn">Play</button>
+                    </div>
+                </div>
+                <div class="img-wrapper">
+                    <img src="assets/images/controller.jpg" alt="xbox controller">
+                </div>
+            </section>
+        </div>
+        <div class="global-chat">
+            <div class="global-header">
+                <i class="ri-arrow-left-s-line"></i>
+                <p>Power Of Memory</p>
+            </div>
+            <div class="chat">
+                <div class="text-1">
+                    <img src="assets/images/Frame 31284.png" alt="profile picture">
+                    <div class="bubble">
+                        <p>👋 Hey ! Well done Clément !</p>
+                    </div>
+                </div>
+                <div class="text-2">
+                    <div class="bubble">
+                        <p>Yes ! Well done Clément !</p>
+                    </div>
+                </div>
+                <div class="text-3">
+                    <img src="assets/images/Avatars.png" alt="profile picture">
+                    <div class="bubble">
+                        <p>TYSM !!</p>
+                    </div>
+                </div>
+            </div>
+            <form action="">
+                <textarea name="" id="" placeholder="Your message..."></textarea>
+            </form>
+        </div>
+        <div class="global-button"><i class="ri-arrow-up-s-line"></i></div>
+    </main>
+    <footer>
+        <!--a footer containing multiple divs, that make style easier to do-->
+        <div class="wrapper">
+            <!--1-->
+            <div>
+                <p class="main"><div class="big-logo"> <img src="assets/images/logo.png" alt="logo"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae
+                    sollicitudin.</p>
+            </div>
+            <!--2-->
+            <div>
+                <p class="main">Menu</p>
+                <ul>
+                    <li>
+                        <p>Home</p>
+                        <p>Scores</p>
+                        <p>Contact</p>
+                    </li>
+                </ul>
+            </div>
+            <!--3-->
+            <div class="footer-contact">
+                <p class="main">Contact us</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>contact@web.com</p>
+            </div>
+            <!--4-->
+            <div class="footer-link">
+                <i class="ri-facebook-box-fill"></i>
+                <i class="ri-instagram-fill"></i>
+                <i class="ri-twitter-x-fill"></i>
+                <i class="ri-linkedin-box-fill"></i>
+            </div>
+        </div>
+        <!--Create a premade line-->
+        <hr>
+        <p class="copyright">
+            Copyright® 2025 <strong>LOGO</strong> All rights reserved
+        </p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>
