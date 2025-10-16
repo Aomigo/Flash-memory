@@ -29,7 +29,7 @@ CREATE TABLE score (
     user_id INT NOT NULL,
     game_id INT NOT NULL,
     difficulty ENUM('easy', 'medium', 'hard') NOT NULL,
-    score INT NOT NULL,
+    user_score INT NOT NULL,
     created_at DATETIME NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY(user_id) REFERENCES user(id),
@@ -63,7 +63,7 @@ INSERT INTO `game` (`id`, `game_name`) VALUES
 (1, 'Power of memory');
 
 --MODIF SCORE
-INSERT INTO `score` (`id`, `user_id`, `game_id`, `difficulty`, `score`, `created_at`) VALUES
+INSERT INTO `score` (`id`, `user_id`, `game_id`, `difficulty`, `user_score`, `created_at`) VALUES
 (1, 1, 1, 'hard', 1500, '2025-10-13'),
 (2, 2, 1, 'hard', 1650, '2025-10-13'),
 (3, 3, 1, 'easy', 680, '2025-10-13'),
@@ -111,3 +111,182 @@ INSERT INTO user (email, `password`, pseudo, created_at, updated_at) VALUES
 SELECT email, `password`
 FROM user
 WHERE email=? AND `password`=?
+
+--US.6
+SELECT g.game_name, s.user_score, s.difficulty, s.created_at, u.pseudo
+FROM score s
+LEFT JOIN game g ON s.game_id = g.id
+LEFT JOIN `user` u ON s.user_id = u.id 
+WHERE s.user_id = 2 
+AND s.difficulty = 'hard'
+ORDER BY s.difficulty DESC, s.score DESC
+
+
+--US.7
+SELECT g.game_name, s.user_score, s.difficulty, s.created_at, u.pseudo
+FROM score s
+LEFT JOIN game g ON s.game_id = g.id
+LEFT JOIN `user` u ON s.user_id = u.id 
+WHERE u.pseudo LIKE '%au%'
+ORDER BY s.difficulty DESC, s.score DESC
+
+--US.8
+--Cas insert
+INSERT INTO score(user_id, game_id, difficulty, user_score, created_at) VALUES
+(2, 1, "difficulty chosen", "Score hit", NOW())
+
+--Cas update
+UPDATE score 
+SET user_score = "Score hit"
+WHERE user_id = user->id 
+AND game_id = game->id
+AND difficulty = "difficulty chosen"
+
+--US.9
+INSERT INTO message (game_id, user_id, `message`, created_at) VALUES
+(1, 2, 'John i love you' , NOW())
+
+--US.10
+SELECT M.message, U.pseudo, (M.user_id = 1) AS IsSender
+FROM message as M
+INNER JOIN user AS U
+ON M.user_id = U.id
+WHERE M.created_at >= NOW() - INTERVAL 1 DAY
+ORDER BY M.created_at ASC;
+
+--US.15 
+--Start with month iteration
+WITH months AS (
+  SELECT 2025 AS year, 1 AS month UNION ALL
+  SELECT 2025, 2 UNION ALL
+  SELECT 2025, 3 UNION ALL
+  SELECT 2025, 4 UNION ALL
+  SELECT 2025, 5 UNION ALL
+  SELECT 2025, 6 UNION ALL
+  SELECT 2025, 7 UNION ALL
+  SELECT 2025, 8 UNION ALL
+  SELECT 2025, 9 UNION ALL
+  SELECT 2025, 10 UNION ALL
+  SELECT 2025, 11 UNION ALL
+  SELECT 2025, 12
+), --Add the top 3 player CTE with cases
+top_players AS (
+  SELECT
+    YEAR(r.created_at) AS year,
+    MONTH(r.created_at) AS month,
+    MAX(CASE WHEN rank = 1 THEN user_name END) AS top1_user,
+    MAX(CASE WHEN rank = 2 THEN user_name END) AS top2_user,
+    MAX(CASE WHEN rank = 3 THEN user_name END) AS top3_user
+  FROM (
+    SELECT
+      s.created_at,
+      u.pseudo AS user_name,
+      s.user_score,
+      ROW_NUMBER() OVER (
+        PARTITION BY YEAR(s.created_at), MONTH(s.created_at)
+        ORDER BY s.user_score DESC
+      ) AS rank
+    FROM score s
+    LEFT JOIN user u ON s.user_id = u.id
+    WHERE s.difficulty = 'hard'
+  ) AS r
+  GROUP BY YEAR(r.created_at), MONTH(r.created_at)
+), --Add the simple month query to get by all month
+monthly_scores AS (
+  SELECT YEAR(created_at) AS year, MONTH(created_at) AS month, COUNT(*) AS total_scores
+  FROM score
+  WHERE YEAR(created_at) = 2025
+  GROUP BY YEAR(created_at), MONTH(created_at)
+), --Hard query to get the most played game
+most_played_game AS (
+  SELECT t.year, t.month, t.game_id
+  FROM ( --Buckets the games by the month and the game
+      SELECT YEAR(created_at) AS year, MONTH(created_at) AS month, game_id, COUNT(*) AS game_count
+      FROM score
+      GROUP BY YEAR(created_at), MONTH(created_at), game_id
+  ) t
+  JOIN ( --Joins them with the highest game count
+      SELECT year, month, MAX(game_count) AS max_count
+      FROM (
+          SELECT YEAR(created_at) AS year, MONTH(created_at) AS month, game_id, COUNT(*) AS game_count
+          FROM score
+          GROUP BY YEAR(created_at), MONTH(created_at), game_id
+      ) sub
+      GROUP BY year, month --t.game_count = m.max_count keeps only the highest of the two bucket for every month : m.max_count
+  ) m ON t.year = m.year AND t.month = m.month AND t.game_count = m.max_count
+) --Select for the returned table
+SELECT m.year, m.month,
+       tp.top1_user,
+       tp.top2_user,
+       tp.top3_user, --COALESCE changes the null from any potential play_count to 0
+       COALESCE(ms.total_scores, 0) AS total_scores,
+       mp.game_id AS most_played_game
+FROM months m --Add every join from the CTE's do add up the month count, the most played game and the top 3
+LEFT JOIN monthly_scores ms ON m.year = ms.year AND m.month = ms.month
+LEFT JOIN most_played_game mp ON m.year = mp.year AND m.month = mp.month
+LEFT JOIN top_players tp ON m.year = tp.year AND m.month = tp.month
+WHERE m.year = 2025
+ORDER BY m.year, m.month; --Order by months
+
+--US.16
+WITH months AS (
+  SELECT 2025 AS year, 1 AS month UNION ALL
+  SELECT 2025, 2 UNION ALL
+  SELECT 2025, 3 UNION ALL
+  SELECT 2025, 4 UNION ALL
+  SELECT 2025, 5 UNION ALL
+  SELECT 2025, 6 UNION ALL
+  SELECT 2025, 7 UNION ALL
+  SELECT 2025, 8 UNION ALL
+  SELECT 2025, 9 UNION ALL
+  SELECT 2025, 10 UNION ALL
+  SELECT 2025, 11 UNION ALL
+  SELECT 2025, 12
+),
+monthly_scores AS (
+  SELECT 
+      YEAR(created_at) AS year,
+      MONTH(created_at) AS month,
+      user_id,
+      game_id,
+      COUNT(*) AS total_scores,
+      ROUND(AVG(user_score)) AS avg_score
+  FROM score
+  WHERE YEAR(created_at) = 2025
+  GROUP BY YEAR(created_at), MONTH(created_at), user_id
+),
+most_played_game AS (
+  SELECT t.year, t.month, t.game_id
+  FROM (
+      SELECT YEAR(created_at) AS year, MONTH(created_at) AS month, game_id, COUNT(*) AS game_count
+      FROM score
+      GROUP BY YEAR(created_at), MONTH(created_at), game_id
+  ) as t
+  JOIN (
+      SELECT MAX(game_count) AS max_count
+      FROM (
+          SELECT COUNT(*) AS game_count
+          FROM score
+      ) sub
+  ) m 
+   ON 
+    t.game_count = m.max_count
+)
+SELECT 
+  m.year, 
+  m.month,
+  COALESCE(ms.avg_score, 0) AS average_score,
+  COALESCE(ms.total_scores, 0) AS game_count,
+  g.game_name AS most_played_game
+FROM months m
+LEFT JOIN monthly_scores ms 
+  ON m.year = ms.year 
+ AND m.month = ms.month 
+ AND ms.user_id = 1
+ 
+LEFT JOIN most_played_game mp 
+  ON m.year = mp.year 
+ AND m.month = mp.month
+ 
+LEFT JOIN game g ON ms.game_id = g.id
+ORDER BY m.year, m.month; -- a presenter
