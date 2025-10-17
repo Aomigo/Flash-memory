@@ -166,6 +166,30 @@ CREATE TABLE `private_messages` (
   `read_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--US. 12
+
+INSERT INTO `private_messages` (`id`, `user_sender_id`, `user_receiver_id`, `message`, `is_read`, `created_at`, `read_at`) VALUES
+(1, 2, 1, 'a', 0, '2025-09-20', NULL),
+(2, 1, 2, 'b', 0, '2025-10-07', NULL),
+(3, 1, 4, 'c', 0, '2025-10-01', NULL),
+(4, 4, 1, 'd', 0, '2025-10-10', NULL),
+(5, 1, 3, 'e', 0, '2025-09-25', NULL),
+(6, 3, 1, 'f', 0, '2025-10-05', NULL),
+(7, 1, 3, 'g', 0, '2025-09-21', NULL),
+(8, 3, 1, 'h', 0, '2025-09-21', NULL),
+(9, 1, 4, 'i', 0, '2025-10-07', NULL),
+(10, 2, 3, 'j', 0, '2025-09-22', NULL),
+(11, 4, 3, 'k', 0, '2025-10-03', NULL),
+(12, 3, 2, 'l', 0, '2025-09-30', NULL),
+(13, 3, 4, 'm', 0, '2025-09-26', NULL),
+(14, 4, 2, 'o', 0, '2025-10-10', NULL),
+(15, 2, 4, 'p', 0, '2025-09-27', NULL),
+(16, 1, 3, 'q', 0, '2025-09-29', NULL),
+(17, 3, 4, 'r', 0, '2025-10-07', NULL),
+(18, 4, 3, 's', 0, '2025-09-26', NULL),
+(19, 2, 3, 't', 0, '2025-09-20', NULL),
+(20, 3, 2, 'u', 0, '2025-10-04', NULL);
+
 --US.15 
 --Start with month iteration
 WITH months AS (
