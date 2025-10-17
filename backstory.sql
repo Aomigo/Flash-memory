@@ -166,7 +166,7 @@ CREATE TABLE `private_messages` (
   `read_at` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---US. 12
+--US.12
 
 INSERT INTO `private_messages` (`id`, `user_sender_id`, `user_receiver_id`, `message`, `is_read`, `created_at`, `read_at`) VALUES
 (1, 2, 1, 'a', 0, '2025-09-20', NULL),
@@ -189,6 +189,23 @@ INSERT INTO `private_messages` (`id`, `user_sender_id`, `user_receiver_id`, `mes
 (18, 4, 3, 's', 0, '2025-09-26', NULL),
 (19, 2, 3, 't', 0, '2025-09-20', NULL),
 (20, 3, 2, 'u', 0, '2025-10-04', NULL);
+
+--US.13
+
+SELECT pm.message, pm.created_at, pm.read_at, pm.is_read, us.pseudo, ur.pseudo
+FROM private_messages AS pm
+LEFT JOIN `user` AS us
+	 ON us.id = pm.user_sender_id
+LEFT JOIN `user` AS ur
+	ON ur.id = pm.user_receiver_id
+WHERE (pm.user_sender_id = 1 OR pm.user_receiver_id = 1)
+  AND pm.created_at = (
+    SELECT MAX(pm2.created_at)
+    FROM private_messages AS pm2
+    WHERE (pm2.user_sender_id + pm2.user_receiver_id
+        = pm.user_sender_id + pm.user_receiver_id)
+  )
+ ORDER BY pm.created_at DESC;
 
 --US.15 
 --Start with month iteration
