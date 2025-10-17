@@ -106,6 +106,9 @@ INSERT INTO user (email, `password`, pseudo, created_at, updated_at) VALUES
     ("john@doe.com", 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz', 'Jhonny', NOW(), NOW())
 
 --US.4
+UPDATE user
+SET password = 'password_string', email='email_string'
+WHERE id = "user's id"
 
 --US.5
 SELECT email, `password`
