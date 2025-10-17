@@ -154,6 +154,18 @@ ON M.user_id = U.id
 WHERE M.created_at >= NOW() - INTERVAL 1 DAY
 ORDER BY M.created_at ASC;
 
+--US.11
+
+CREATE TABLE `private_messages` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_sender_id` int(11) NOT NULL,
+  `user_receiver_id` int(11) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `is_read` tinyint(1) NOT NULL,
+  `created_at` date NOT NULL,
+  `read_at` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 --US.15 
 --Start with month iteration
 WITH months AS (
