@@ -207,6 +207,41 @@ WHERE (pm.user_sender_id = 1 OR pm.user_receiver_id = 1)
   )
  ORDER BY pm.created_at DESC;
 
+ --US.14
+
+ SELECT us.pseudo, ur.pseudo, pm.created_at, pm.read_at, pm.is_read, 
+  
+  (SELECT COUNT(*) FROM score WHERE score.user_id = 1) AS player_one_count,
+  
+  (SELECT COUNT(*) FROM score WHERE score.user_id = 4) AS player_two_count,
+  
+  (SELECT game_name FROM game WHERE id = (
+        SELECT score.game_id 
+        FROM score 
+        WHERE score.user_id = 1 
+        GROUP BY score.game_id 
+        ORDER BY COUNT(*) DESC 
+        LIMIT 1
+      )
+    ) AS most_played_by_current_user,
+  
+  (SELECT game_name FROM game WHERE id = (
+      SELECT score.game_id 
+      FROM score 
+      WHERE score.user_id = 4 
+      GROUP BY score.game_id 
+      ORDER BY COUNT(*) DESC
+      LIMIT 1
+    )
+  ) AS most_played_by_selected_user
+  
+FROM private_messages AS pm
+LEFT JOIN `user` AS us ON us.id = pm.user_sender_id
+LEFT JOIN `user` AS ur ON ur.id = pm.user_receiver_id
+WHERE 1 IN (user_sender_id, user_receiver_id)
+  AND 4 IN (user_sender_id, user_receiver_id)
+ORDER BY pm.created_at ASC;
+
 --US.15 
 --Start with month iteration
 WITH months AS (
