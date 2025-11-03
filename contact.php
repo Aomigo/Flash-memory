@@ -1,27 +1,14 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/contact.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet"/>
-    <title>Contact</title>
-</head>
+
+<?php include 'utils/common.php';?>
+
+<?php include 'partials/head.php'; ?>
 
 <body>
 
-    <header>
-        <nav>
-            <h1>LOGO</h1>
-            <ul>
-                <li>
-                <a href="#">Home</a>
-                <a href="#">Score</a>
-                <button>Contact Us</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'partials/header.php'; ?>
+
 
     <h2>Lorem Ipsum is simply dummy text of the printing and.</h2>
     <p class="centeredText mt-10px">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
@@ -89,40 +76,6 @@
 
     </form>
 
-    <footer>
-        <div class="wrapper">
-            <div>
-                <p class="main">
-                    <h1>LOGO</h1>
-                </p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae
-                    sollicitudin.</p>
-            </div>
-            <div>
-                <p class="main">Menu</p>
-                <ul>
-                    <li>
-                        <p>Home</p>
-                        <p>Scores</p>
-                        <p>Contact</p>
-                    </li>
-                </ul>
-            </div>
-            <div class="footer-contact">
-                <p class="main">Contact us</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>contact@web.com</p>
-            </div>
-            <div class="footer-link">
-                <i class="ri-facebook-box-fill"></i>
-                <i class="ri-instagram-fill"></i>
-                <i class="ri-twitter-x-fill"></i>
-                <i class="ri-linkedin-box-fill"></i>
-            </div>
-        </div>
-        <hr>
-        <p class="copyright">
-            Copyright® 2025 <strong>LOGO</strong> All rights reserved
-        </p>
-    </footer>
+    <?php include 'partials/footer.php'; ?>
+
 </body>

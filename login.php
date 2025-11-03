@@ -1,12 +1,8 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/logs.css"/>
-    <link rel="icon" href="assets/images/logo.png">
-    <title>Login</title>
-</head>
+<?php include 'utils/common.php';?>
+
+<?php include 'partials/head.php'; ?>
 
 <body>
     <div id="main">

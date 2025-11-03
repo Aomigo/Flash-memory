@@ -1,36 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My account</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/account.css">
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
-    <link rel="icon" href="assets/images/logo.png">
-</head>
+<?php include 'utils/common.php';?>
+
+<?php include 'partials/head.php'; ?>
 
 <body>
-    <header>
-        <!--the nav composed of 4 elements-->
-        <nav>
-            <div class="logo"> <img src="assets/images/logo.png" alt="logo"><strong>Power of memory</strong></div>
-            <div class="burger">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-            </div>
-            <ul class="nav">
-                <li>
-                    <a href="index.html">Home</a>
-                    <a href="score.html">Score</a>
-                    <a href="account.html">My account</a>
-                    <button>Contact Us</button>
-                </li>
-            </ul>
-        </nav>
-    </header>
+    <?php include 'partials/header.php'; ?>
     <main>
         <div class="main-wrapper">
             <div class="info">
@@ -67,46 +43,7 @@
             </div>
         </div>
     </main>
-    <footer>
-        <!--a footer containing multiple divs, that make style easier to do-->
-        <div class="wrapper">
-            <!--1-->
-            <div>
-                <p class="main"><div class="big-logo"> <img src="assets/images/logo.png" alt="logo"></div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae
-                    sollicitudin.</p>
-            </div>
-            <!--2-->
-            <div>
-                <p class="main">Menu</p>
-                <ul>
-                    <li>
-                        <p>Home</p>
-                        <p>Scores</p>
-                        <p>Contact</p>
-                    </li>
-                </ul>
-            </div>
-            <!--3-->
-            <div class="footer-contact">
-                <p class="main">Contact us</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>contact@web.com</p>
-            </div>
-            <!--4-->
-            <div class="footer-link">
-                <i class="ri-facebook-box-fill"></i>
-                <i class="ri-instagram-fill"></i>
-                <i class="ri-twitter-x-fill"></i>
-                <i class="ri-linkedin-box-fill"></i>
-            </div>
-        </div>
-        <!--Create a premade line-->
-        <hr>
-        <p class="copyright">
-            Copyright® 2025 <strong>LOGO</strong> All rights reserved
-        </p>
-    </footer>
+    <?php include 'partials/footer.php'; ?>
 </body>
 
 </html>
