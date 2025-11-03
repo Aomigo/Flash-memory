@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--the head that imports remixicon's link, aswell as the needed stylesheets-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power of memory</title>
+    <link rel="stylesheet" href="assets/css/Echec.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <link rel="icon" href="assets/images/logo.png">
+</head>
+
+<body>
+    <header>
+        <!--the nav composed of 4 elements-->
+        <nav>
+            <div class="logo"> <img src="assets/images/logo.png" alt="logo"><strong>Power of memory</strong></div>
+            <div class="burger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <ul class="nav">
+                <li>
+                    <a href="index.html">Home</a>
+                    <a href="score.html">Score</a>
+                    <a href="account.html">My account</a>
+                    <button>Contact Us</button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <!--1st section-->
+
+        <section class="banner">
+
+            <p class="text orange">
+                <strong>Le texte orange</strong>
+            </p>
+
+            <h1>Le Paragraphe principale,<br />qui dois être super grand,<br />et en plusieurs lignes ...<br />J'ai pas
+                d'idée</h1>
+
+            <p class="text">Encore un text super long mais pas en h1,<br />bon bah je sais pas quoi mettre encore
+                ...<br /> Sinon vous ça vas ? Tout ce passe bien ?</p>
+
+            <a href="********" class="button">Start !</a>
+
+        </section>
+
+        <!--Game selection-->
+
+        <section class="GameSelect">
+
+            <h3>Our Games</h3>
+            <div class="Game">
+                <figure>
+                    <a href="********">
+                        <img src="assets\images\5e3cba2fbfa61b5f20863c65578cd03e1ab0a523.jpg" alt="Image not found"
+                            class="img" width="300">
+                    </a>
+                    <figcaption class="text">Power of Memory</figcaption>
+                </figure>
+
+                <figure>
+                    <a href="********">
+                        <img src="assets\images\bf05db6f069cd0d85a1231abce602cf837179a7b.jpg" alt="Image not found"
+                            class="img" width="300">
+                    </a>
+                    <figcaption class="text">Game n°2</figcaption>
+                </figure>
+
+                <figure>
+                    <a href="********">
+                        <img src="assets\images\bf05db6f069cd0d85a1231abce602cf837179a7b.jpg" alt="Image not found"
+                            class="img" width="300">
+                    </a>
+                    <figcaption class="text">Game n°3</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!--3d section-->
+
+        <section class="bloc3">
+
+            <h1 class="center">Un text<h1>
+
+                    <h1>Un text<h1>
+
+                            <p class="text">Un text</p>
+
+                            <img src="assets\images\be61ec5cdee17a4986b5e984701816a4cc2b0ee0.jpg" alt="Image not found"
+                                class="grandeImg" width="300">
+
+        </section>
+
+        <!--Web site stats-->
+
+        <section class="WebSiteStats">
+
+            <p><strong>Un text</strong></p>
+            <p>Un text</p>
+
+            <div>
+
+                <div class="stat blue">
+                    <h1>310</h1>
+                    <p class="second">Games played</p>
+                </div>
+
+                <div class="stat white">
+                    <h1>1020</h1>
+                    <p class="second">Players online</p>
+                </div>
+
+                <div class="stat orange">
+                    <h1>10s</h1>
+                    <p class="second">Best time</p>
+                </div>
+
+                <div class="stat red">
+                    <h1>9300</h1>
+                    <p class="second">Player registred</p>
+                </div>
+
+                <div class="stat orange">
+                    <h1>2</h1>
+                    <p class="second">Record beat today</p>
+                </div>
+            </div>
+
+        </section>
+
+        <!--Our team-->
+
+        <section class="Team">
+            <h1 class="center">Un text</h1>
+            <p class="center">Au revoir</p>
+            <div class="teamImg">
+                <figure class="teamMem">
+                    <img src="assets\images\50036d8bbf9842a13efb8cc735f834a004bf06a9.png" alt="Image not found"
+                        class="imgTeam" width="300">
+                    <figcaption><strong>********</strong></figcaption>
+                </figure>
+
+                <figure class="teamMem">
+                    <img src="assets\images\50036d8bbf9842a13efb8cc735f834a004bf06a9.png" alt="Image not found"
+                        class="imgTeam" width="300">
+                    <figcaption><strong>********</strong></figcaption>
+                </figure>
+
+                <figure class="teamMem">
+                    <img src="assets\images\50036d8bbf9842a13efb8cc735f834a004bf06a9.png" alt="Image not found"
+                        class="imgTeam" width="300">
+                    <figcaption><strong>********</strong></figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!--Stay informed-->
+
+        <section class="contactUs">
+
+            <h1>Un text</h1>
+
+            <p>Allez on devine celui ci, c'est ? ... Bah non c'est un diplodocus pas un text, faut suivre un peux !</p>
+
+            <div>
+                <p class="first"><strong>zdvdgerfgsdgergv</strong></p>
+
+                <p class="second">refgesfdvwgrqfsdfg</p>
+
+                <form>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <button type="submit">Validate</button>
+                </form>
+
+            </div>
+        </section>
+    </main>
+    <footer>
+        <!--a footer containing multiple divs, that make style easier to do-->
+        <div class="wrapper">
+            <!--1-->
+            <div><div class="big-logo"> <img src="assets/images/logo.png" alt="logo"></div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse scelerisque in tortor vitae
+                    sollicitudin.</p>
+            </div>
+            <!--2-->
+            <div><p class="main">Menu</p>
+                <ul>
+                    <li>
+                        <p>Home</p>
+                        <p>Scores</p>
+                        <p>Contact</p>
+                    </li>
+                </ul>
+            </div>
+            <!--3-->
+            <div class="footer-contact"><p class="main">Contact us</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p>contact@web.com</p>
+            </div>
+            <!--4-->
+            <div class="footer-link">
+                <i class="ri-facebook-box-fill"></i>
+                <i class="ri-instagram-fill"></i>
+                <i class="ri-twitter-x-fill"></i>
+                <i class="ri-linkedin-box-fill"></i>
+            </div>
+        </div>
+        <!--Create a premade line-->
+        <hr>
+        <p class="copyright">
+            Copyright® 2025 <strong>LOGO</strong> All rights reserved
+        </p>
+    </footer>
+</body>
+
+</html>
