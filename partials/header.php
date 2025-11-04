@@ -13,7 +13,7 @@ function active($current_page){
 <header>
         <!--the nav composed of 4 elements-->
         <nav>
-            <div class="logo"> <img src="assets/images/logo.png" alt="logo"><strong>Power of memory</strong></div>
+            <div class="logo"> <img src="<?php echo RootUrl(); ?>assets/images/logo.png" alt="logo"><strong>Power of memory</strong></div>
             <div class="burger">
                 <div class="line"></div>
                 <div class="line"></div>
@@ -22,8 +22,8 @@ function active($current_page){
             <ul class="nav">
                 <li>
                     <a class="<?php active('index.php') ?>" href="<?php echo RootUrl(); ?>index.php">Home</a>
-                    <a class="<?php active('score.php') ?>" href="<?php echo RootUrl(); ?>/games/memory/score.php">Score</a>
-                    <a class="<?php active('account.php') ?>" href="<?php echo RootUrl(); ?>/account.php">My account</a>
+                    <a class="<?php active('score.php') ?>" href="<?php echo RootUrl(); ?>games/memory/score.php">Score</a>
+                    <a class="<?php active('account.php') ?>" href="<?php echo RootUrl(); ?>account.php">My account</a>
                     <button>Contact Us</button>
                 </li>
             </ul>

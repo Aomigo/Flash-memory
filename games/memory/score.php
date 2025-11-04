@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php include '../../utils/common.php';?>
-
+<?php include_once '../../partials/functions.php'; ?>
 <?php include '../../partials/head.php'; ?>
 
 <body>
@@ -28,51 +28,24 @@
                     </thead>
                     <!--A RENDRE DYNAMIQUE-->
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <th class="th_img"><img class="score_img" src="assets/images/memory.jpg" alt="memory">Power
+                        <?php
+                        $s = 1;
+                            foreach(getScore() as $i) {
+                                //echo ($i['id'] == $_SESSION['id']) ? '<tr class="me">' : '<tr>'; a ajouter quand session faite
+                                ?>
+                                <tr>
+                            <td><?php echo $s ?></td>
+                            <th class="th_img"><img class="score_img" src="<?php echo RootUrl(); ?>assets/images/memory.jpg" alt="memory">Power
                                 Of memory</th>
-                            <th>John Doe</th>
-                            <th>Impossible</th>
-                            <th>1mn36s</th>
-                            <th>29/09/25</th>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <th class="th_img"><img class="score_img" src="assets/images/memory.jpg" alt="memory">Power
-                                Of memory</th>
-                            <th>Bernard</th>
-                            <th>Hard</th>
-                            <th>1mn12s</th>
-                            <th>29/09/25</th>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <th class="th_img"><img class="score_img" src="assets/images/memory.jpg" alt="memory">Power
-                                Of memory</th>
-                            <th>Goose</th>
-                            <th>Hard</th>
-                            <th>2mn12s</th>
-                            <th>29/09/25</th>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <th class="th_img"><img class="score_img" src="assets/images/memory.jpg" alt="memory">Power
-                                Of memory</th>
-                            <th>John Doe</th>
-                            <th>Medium</th>
-                            <th>55s</th>
-                            <th>29/09/25</th>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <th class="th_img"><img class="score_img" src="assets/images/memory.jpg" alt="memory">Power
-                                Of memory</th>
-                            <th>Rose</th>
-                            <th>Hard</th>
-                            <th>1mn07s</th>
-                            <th>29/09/25</th>
-                        </tr>
+                            <th> <?php echo $i['pseudo'] ?></th>
+                            <th><?php echo $i['difficulty'] ?></th>
+                            <th><?php echo $i['score'] ?></th>
+                            <th><?php echo $i['created_at'] ?></th>
+                                </tr>
+                                <?php
+                                $s++;
+                            }
+                        ?>
                     </tbody>
                 </table>
             </section>
