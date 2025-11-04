@@ -8,7 +8,6 @@ function active($current_page){
       echo 'unactive';
   }
 }
-var_dump(RootUrl($_SERVER['REQUEST_URI']))
 ?>
 
 <header>
@@ -22,9 +21,9 @@ var_dump(RootUrl($_SERVER['REQUEST_URI']))
             </div>
             <ul class="nav">
                 <li>
-                    <a class="<?php active('index.php') ?>" href="<?php getBaseUrl()?>">Home</a>
-                    <a class="<?php active('score.php') ?>" href="<?php getBaseUrl()?>games/memory/score.php">Score</a>
-                    <a class="<?php active('account.php') ?>" href="<?php getBaseUrl()?>account.php">My account</a>
+                    <a class="<?php active('index.php') ?>" href="<?php echo RootUrl(); ?>index.php">Home</a>
+                    <a class="<?php active('score.php') ?>" href="<?php echo RootUrl(); ?>/games/memory/score.php">Score</a>
+                    <a class="<?php active('account.php') ?>" href="<?php echo RootUrl(); ?>/account.php">My account</a>
                     <button>Contact Us</button>
                 </li>
             </ul>

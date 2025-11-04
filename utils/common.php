@@ -23,9 +23,9 @@ function getBaseUrl(): string {
     return $protocol . $host . '/' . $projectRoot . '/';
 }
 
-function RootUrl($url = 'http://localhost/Flash-memory/index.php') {
-    $parsed_url = parse_url($url);
-    $base_url = $parsed_url['scheme'] . "://" . $parsed_url['host'] . "/";
-
-    echo $base_url;
+function RootUrl() {
+    $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+    $host = $_SERVER['HTTP_HOST'];
+    $root = '/Flash-memory/'; // change this if your project folder changes
+    return $protocol . $host . $root;
 }
