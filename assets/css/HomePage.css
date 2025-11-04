@@ -1,0 +1,147 @@
+body {
+  background-color: #070320;
+  color: white;
+  font-family: poppins;
+}
+
+main {
+  width: 1240px;
+  margin: auto;
+}
+
+/* Banner */
+
+.banner {
+  padding: 80px;
+  background-color: #070320;
+  background-image: url(../Image/8bdd2c3954dcf48e04c5934bbab4c1a3cbcad318.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.banner .text {
+  font-size: 12px;
+  color: #fff;
+}
+
+.banner .text.orange {
+  color: orange;
+}
+
+.banner .button {
+  background: linear-gradient(to right, #D80027, #FB9E3C);
+  padding: 5px 50px;
+  border-radius: 40px;
+  color: white;
+  text-decoration: none;
+}
+
+/* GameSlect */
+
+.GameSelect {
+  padding: 80px 50px;
+}
+
+.GameSelect .img {
+  width: 275px;
+  height: 275px;
+  border-radius: 20px;
+  gap: 20px;
+  text-align: center;
+}
+
+.GameSelect .Game {
+  display: flex;
+  flex-direction: row;
+}
+
+/* Bloc3 */
+
+.Bloc3 {
+  padding: 80px;
+}
+
+.bloc3 .grandeImg {
+  width: 1206px;
+  height: 541px;
+  border-radius: 5px;
+}
+
+.bloc3 .center {
+  text-align: center;
+  font-size: 35px;
+}
+
+.WebSiteStats {
+  background-color: #070320;
+  background-image: url(../Image/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.WebSiteStats .center{
+  text-align: center;
+}
+
+.WebSiteStats .centerP{
+  text-align: center;
+  font-size: 64px;
+}
+
+.WebSiteStats .stat{
+  width: 233px;
+  height: 129.79px;
+  border-radius: 5px;
+}
+  
+
+.WebSiteStats .stat.blue{
+  background-color: #019ADC;
+}
+
+.WebSiteStats .stat.white{
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.WebSiteStats .stat.orange{
+  background-color: #DC7000;
+}
+
+.WebSiteStats .stat.red{
+  background-color: #D80027;
+}
+
+.Team .text{
+  text-align: center;
+}
+
+.Team{
+  padding: 0px;
+  margin-right: 50px;
+}
+
+.Team .center{
+  text-align: center;
+}
+
+.Team .imgTeam{
+  width: 352px;
+  height: 223;
+  border-radius: 20px;
+  gap: 20px;
+}
+.Team .teamImg{
+  display: flex;
+  flex-direction: row;
+}
+
+.contactUs div{
+  color: #000000;
+  background-color: #fff;
+  width: 1170px;
+  height: 120px;
+  border-radius: 15px;
+  padding: 10px 30px;
+}
