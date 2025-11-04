@@ -22,3 +22,10 @@ function getBaseUrl(): string {
     // Construit l’URL de base du projet
     return $protocol . $host . '/' . $projectRoot . '/';
 }
+
+function RootUrl($url = 'http://localhost/Flash-memory/index.php') {
+    $parsed_url = parse_url($url);
+    $base_url = $parsed_url['scheme'] . "://" . $parsed_url['host'] . "/";
+
+    echo $base_url;
+}
