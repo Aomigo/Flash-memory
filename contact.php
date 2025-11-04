@@ -1,19 +1,18 @@
 <!DOCTYPE HTML>
 <html lang="fr">
 
-<?php include 'utils/common.php';?>
-
-<?php include 'partials/head.php'; ?>
-
+<?php require_once 'partials/head.php'; ?>
+<link rel="stylesheet" href="assets/css/contact.css">
+</head>
 <body>
 
-    <?php include 'partials/header.php'; ?>
+    <?php require_once 'partials/header.php'; ?>
 
 
     <h2>Lorem Ipsum is simply dummy text of the printing and.</h2>
     <p class="centeredText mt-10px">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
 
-    <figure class="mt-large"><img src="assets/images/map.png" alt="Image couldn't be found"></figure>
+    <figure class="mt-large"><img class="map" src="assets/images/map.png" alt="Image couldn't be found"></figure>
 
     <div class="infoContainer">
         <div class="logosContainer">

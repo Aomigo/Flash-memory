@@ -1,14 +1,3 @@
-<?php
-function active($current_page){
-  $url_array =  explode('/', $_SERVER['REQUEST_URI']) ;
-  $url = end($url_array);  
-  if($current_page == $url){
-      echo 'active'; //class name in css 
-  } else {
-      echo 'unactive';
-  }
-}
-?>
 
 <header>
         <!--the nav composed of 4 elements-->
@@ -24,7 +13,7 @@ function active($current_page){
                     <a class="<?php active('index.php') ?>" href="<?php echo RootUrl(); ?>index.php">Home</a>
                     <a class="<?php active('score.php') ?>" href="<?php echo RootUrl(); ?>games/memory/score.php">Score</a>
                     <a class="<?php active('account.php') ?>" href="<?php echo RootUrl(); ?>account.php">My account</a>
-                    <button>Contact Us</button>
+                    <a href="<?php echo RootUrl(); ?>contact.php"><button>Contact Us</button></a>
                 </li>
             </ul>
         </nav>
