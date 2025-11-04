@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php include '../../utils/common.php';?>
-<?php include_once '../../partials/functions.php'; ?>
-<?php include '../../partials/head.php'; ?>
+<?php require_once '../../partials/head.php'; ?>
+<link rel="stylesheet" href="../../assets/css/score.css">
+</head>
 
 <body>
-    <?php include '../../partials/header.php'; ?>
+    <?php require_once '../../partials/header.php'; ?>
     <main>
         <div class="main-wrapper">
             <div class="pres">

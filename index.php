@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include 'utils/common.php';?>
-
 <?php include 'partials/head.php'; ?>
-
+<link rel="stylesheet" href="assets/css/Echec.css">
+</head>
 <body>
     <?php include 'partials/header.php'; ?>
     <main>

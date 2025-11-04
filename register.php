@@ -1,9 +1,9 @@
 <!DOCTYPE HTML>
 <html lang="fr">
-<?php include 'utils/common.php';?>
 
 <?php include 'partials/head.php'; ?>
-
+<link rel="stylesheet" href="assets/css/logs.css">
+</head>
 <body>
     <div id="main">
 
