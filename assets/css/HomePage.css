@@ -9,6 +9,22 @@ main {
   margin: auto;
 }
 
+.success-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  width: 300px;
+  height: 40px;
+  position: absolute;
+  top: 60px;
+  left: 0%;
+
+  background-color: #D80027;
+  border-radius: 0 100px 100px 0;
+  animation: pop 0.8s;
+}
+
 /* Banner */
 
 .banner {
@@ -144,4 +160,13 @@ main {
   height: 120px;
   border-radius: 15px;
   padding: 10px 30px;
+}
+
+@keyframes pop {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0px;
+  }
 }
