@@ -26,3 +26,17 @@ function active($current_page){
       echo 'unactive';
   }
 }
+
+function getBestScore() {
+    $pdo = getPDO();
+    $try = $pdo->query("SELECT * FROM score WHERE score.user_id = ". $_SESSION['user']['id'] . " ORDER BY difficulty DESC, SCORE DESC LIMIT 1");
+    $bestScore = $try->fetch();
+    return $bestScore;
+}
+
+function getMessage() {
+    $pdo = getPDO();
+    $try = $pdo->query("SELECT * FROM message");
+    $messages = $try->fetchAll();
+    return $messages;
+}

@@ -15,7 +15,7 @@ main {
 
 table {
   border-collapse: separate;
-  border-spacing: 0 5px;
+  border-spacing: 0 12px;
   padding: 30px;
   width: 1000px;
 }
@@ -96,6 +96,10 @@ table tr th {
 .play_btn:hover {
     background-color: #af0020;
     cursor: pointer;
+}
+
+.me {
+    outline: 4px solid #D80027;
 }
 
 @media (max-width : 768px) {
