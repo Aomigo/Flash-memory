@@ -2,7 +2,7 @@
 <html lang="en">
 
 <?php include 'partials/head.php'; ?>
-<link rel="stylesheet" href="assets/css/Echec.css">
+<link rel="stylesheet" href="assets/css/HomePage.css">
 </head>
 <body>
     <?php include 'partials/header.php'; ?>
