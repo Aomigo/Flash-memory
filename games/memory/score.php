@@ -30,10 +30,10 @@
                     <tbody>
                         <?php
                         $s = 1;
+                        var_dump($_SESSION['user']['id']);
                             foreach(getScore() as $i) {
-                                //echo ($i['id'] == $_SESSION['id']) ? '<tr class="me">' : '<tr>'; a ajouter quand session faite
+                                echo ($i['id'] == $_SESSION['user']['id']) ? '<tr class="me">' : '<tr>';
                                 ?>
-                                <tr>
                             <td><?php echo $s ?></td>
                             <th class="th_img"><img class="score_img" src="<?php echo RootUrl(); ?>assets/images/memory.jpg" alt="memory">Power
                                 Of memory</th>

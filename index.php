@@ -7,6 +7,9 @@
 <body>
     <?php include 'partials/header.php'; ?>
     <main>
+        <?php if (isset($_GET['login']) && $_GET['login'] === 'success'): ?>
+            <p class="success-message">You have successfully logged in, <?php echo $_SESSION['user']['pseudo']?>!</p>
+        <?php endif; ?>
         <!--1st section-->
 
         <section class="banner">

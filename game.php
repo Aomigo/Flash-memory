@@ -2,9 +2,11 @@
 <html lang="en">
 <!--the head that imports remixicon's link, aswell as the needed stylesheets-->
 
-<?php include 'utils/common.php';?>
+
 
 <?php include 'partials/head.php'; ?>
+<link rel="stylesheet" href="assets/css/game.css">
+</head>
 
 <body>
     <?php include 'partials/header.php'; ?>
@@ -87,29 +89,49 @@
                 <p>Power Of Memory</p>
             </div>
             <div class="chat">
-                <div class="text-1">
-                    <img src="assets/images/Frame 31284.png" alt="profile picture">
-                    <div class="bubble">
-                        <p>👋 Hey ! Well done Clément !</p>
+                <?php
+                foreach (getMessage() as $message) {
+                    if ($message['user_id'] == $_SESSION['user']['id']) { ?>
+                        <div class="my-text text">
+                            <div class="bubble">
+                                <p><?php echo $message['message'] ?></p>
+                            </div>
+                            <img src="assets/images/<?php echo $_SESSION['user']['picture'] ?>" alt="profile picture">
+                        </div>
+                    <?php } ?>
+                    echo ($message['user_id'] == $_SESSION['user']['id'])? '<div class="my-text text">' : '<div
+                            class="foreign-text text">'; ?>
+                            <img src="assets/images/<?php echo $_SESSION['user']['picture'] ?>" alt="profile picture">
+                            <div class="bubble">
+                                <p><?php echo $message['message'] ?></p>
+                            </div>
+                        </div>
+                    <?php
+                }
+                ?>
+                    <div class="text-1">
+                        <img src="assets/images/Frame 31284.png" alt="profile picture">
+                        <div class="bubble">
+                            <p>👋 Hey ! Well done Clément !</p>
+                        </div>
+                    </div>
+                    <div class="text-2">
+                        <div class="bubble">
+                            <p>Yes ! Well done Clément !</p>
+                        </div>
+                    </div>
+                    <div class="text-3">
+                        <img src="assets/images/Avatars.png" alt="profile picture">
+                        <div class="bubble">
+                            <p>TYSM !!</p>
+                        </div>
                     </div>
                 </div>
-                <div class="text-2">
-                    <div class="bubble">
-                        <p>Yes ! Well done Clément !</p>
-                    </div>
-                </div>
-                <div class="text-3">
-                    <img src="assets/images/Avatars.png" alt="profile picture">
-                    <div class="bubble">
-                        <p>TYSM !!</p>
-                    </div>
-                </div>
+                <form action="">
+                    <textarea name="" id="" placeholder="Your message..."></textarea>
+                </form>
             </div>
-            <form action="">
-                <textarea name="" id="" placeholder="Your message..."></textarea>
-            </form>
-        </div>
-        <div class="global-button"><i class="ri-arrow-up-s-line"></i></div>
+            <div class="global-button"><i class="ri-arrow-up-s-line"></i></div>
     </main>
     <?php include 'partials/footer.php'; ?>
     <script src="assets/js/script.js"></script>

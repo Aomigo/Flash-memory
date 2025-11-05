@@ -183,9 +183,7 @@ box-shadow: 5px 5px 15px 5px #000000;
     outline: none;
 }
 
-.text-1,
-.text-2,
-.text-3 {
+.text {
     display: flex;
     align-items: end;
     flex-direction: row;
@@ -204,22 +202,20 @@ box-shadow: 5px 5px 15px 5px #000000;
     border-radius: 10px;
 }
 
-.text-2 {
+.my-text {
     justify-content: end;
 }
 
-.text-1,
-.text-3 {
+.foreign-text {
     justify-content: start;
 
 }
 
-.text-2 .bubble {
+.my-text .bubble {
     background-color: #D80027;  
 }
 
-.text-1 .bubble,
-.text-3 .bubble {
+.foreign-text .bubble {
     background-color: #F2F2F2;
     color: black;
     margin-left: 20px;
@@ -227,6 +223,8 @@ box-shadow: 5px 5px 15px 5px #000000;
 
 .global-chat img {
     height: 100%;
+    border-radius: 50%;
+    width: 40px;
 }
 
 

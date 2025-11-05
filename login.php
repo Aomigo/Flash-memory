@@ -1,3 +1,10 @@
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/validators.php';
+if(isset($_POST['email'])) {
+    tryLogin($_POST);
+}
+?>
+
 <!DOCTYPE HTML>
 <html lang="fr">
 <?php include 'partials/head.php'; ?>
@@ -12,16 +19,16 @@
 
             <div class="UI">
 
-                <form>
+                <form action="" method="POST">
                     <div class="userInfo mb-10px">
 
                         <div class="formGroup mb-10px">
                             <label for="email">Email :</label>
-                            <input class ="definedH" type="email" id="email" placeholder="Example@email.com"/>
+                            <input class ="definedH" type="email" id="email" name="email" placeholder="Example@email.com"/>
                         </div>
                         <div class="formGroup">
                             <label for="password">Password :</label>
-                            <input class ="definedH" type="password" id = "password" placeholder="8 characters minimum"/>
+                            <input class ="definedH" type="password" id = "password" name="password" placeholder="8 characters minimum"/>
                         </div>
                             
                     </div>
