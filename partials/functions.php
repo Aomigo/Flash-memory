@@ -63,3 +63,16 @@ function getTime($created_at)
     return $dateString;
     }
 }
+
+//Copied from registeFormTreatment since getPDO problem;
+function SearchForSpecialCharsInString($data){
+    return (bool) preg_match('/[&@#$?]/', $data);
+}
+
+function SearchForDigitsInString($data){
+    return preg_match("/[0-9]/", $data);
+}
+
+function SearchForUppercaseInString($data){
+    return preg_match("/[A-Z]/", $data);
+}

@@ -26,6 +26,23 @@ nav {
     color: white;
 }
 
+.success-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  width: 300px;
+  height: 40px;
+  position: absolute;
+  top: 60px;
+  left: 0%;
+
+  background-color: #D80027;
+  border-radius: 0 100px 100px 0;
+  animation: pop 0.8s;
+}
+
+
 
 
 .burger {
@@ -201,6 +218,15 @@ nav .active::after {
 
 nav a:hover{
     color: rgb(201, 201, 201);
+}
+
+@keyframes pop {
+  0% {
+    left: -1000px;
+  }
+  100% {
+    left: 0px;
+  }
 }
 
 
