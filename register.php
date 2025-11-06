@@ -13,20 +13,24 @@
             <p class ="presentationText">Welcome to our website, you can register here.<br/>Do you have what it takes to climb up the leaderboard?</p>
 
             <div class="UI">
-                <form>
+                <form action ="registerFormTreatment.php" method="POST">
                     <div class="userInfo mb-10px">
 
                         <div class="formGroup mb-10px">
                             <label for="email">Email :</label>
-                            <input class="definedH" type="email" id="email" placeholder="Example@email.com"/>
+                            <input class="definedH" type="email" name="email" id="email" placeholder="Example@email.com"/>
                         </div>
                         <div class="formGroup mb-10px">
                             <label for="password">Password :</label>
-                            <input class="definedH" type="password" id = "password" placeholder="8 characters minimum"/>
+                            <input class="definedH" type="password" name="password" id = "password" placeholder="8 characters minimum"/>
                         </div>
                         <div class="formGroup mb-10px">
                             <label for="confirm_password">Confirm password :</label>
-                            <input class="definedH" type="confirm_password" id = "confirm_password" placeholder="Confirm password"/>
+                            <input class="definedH" type="password" name="confirm_password" id = "confirm_password" placeholder="Confirm password"/>
+                        </div>
+                        <div class="formGroup mb-10px">
+                            <label for="pseudo">Pseudo :</label>
+                            <input class="definedH" type="pseudo" name="pseudo" id = "pseudo" placeholder="4 characters minimum"/>
                         </div>
                             
                         <button type="submit" class="submitButton definedH">Sign up</button>
