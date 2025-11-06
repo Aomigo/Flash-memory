@@ -212,7 +212,7 @@ box-shadow: 5px 5px 15px 5px #000000;
 
 .text {
     display: flex;
-    align-items: center;
+    align-items: end;
     flex-direction: row;
     margin-bottom: 15px;
     padding: 10px 15px;
@@ -225,8 +225,9 @@ box-shadow: 5px 5px 15px 5px #000000;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    height: 50px;
     border-radius: 10px;
+    min-width: 50px;
+    min-height: 50px;
 }
 
 .my-text {
@@ -236,10 +237,6 @@ box-shadow: 5px 5px 15px 5px #000000;
 .foreign-text {
     justify-content: start;
 
-}
-
-.bubble {
-    min-width: 50px;
 }
 
 .my-text .bubble {
@@ -267,12 +264,17 @@ box-shadow: 5px 5px 15px 5px #000000;
     font-weight: 300;
 }
 
-.global-chat img {
+.global-chat .pp {
     height: 100%;
     border-radius: 50%;
     width: 40px;
     position: relative;
-    bottom: 5px;
+    bottom: 8px;
+}
+
+.cat-img {
+    width: 200px;
+    height: 100%;
 }
 
 
