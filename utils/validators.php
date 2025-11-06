@@ -158,7 +158,7 @@ function tryRegister($post)
         $pdo = getPDO();
         $password = password_hash($password, PASSWORD_DEFAULT);
 
-        $stmt = $pdo->prepare("INSERT INTO `user`(email, password, pseudo, created_at, updated_at, picture) VALUES (?, ?, ?, NOW(),NOW(),'assets/images/picture.jpg')");
+        $stmt = $pdo->prepare("INSERT INTO `user`(email, password, pseudo, created_at, updated_at, picture) VALUES (?, ?, ?, NOW(),NOW(),'picture.jpg')");
         $stmt->execute([$email, $password, $pseudo]);
         $getUser = $pdo->prepare("SELECT * FROM user WHERE email = :email");
         $getUser->execute([':email' => $email]);

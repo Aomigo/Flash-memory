@@ -1,6 +1,6 @@
-<?php 
+<?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/validators.php';
-if(isset($_POST['text'])) {
+if (isset($_POST['text'])) {
     trySending($_POST);
 }
 ?>
@@ -92,6 +92,14 @@ if(isset($_POST['text'])) {
                 <p>Power Of Memory</p>
             </div>
             <div class="chat">
+                <div class="foreign-text text">
+                    <img class="pp" src="assets/images/picture.jpg" alt="profile picture">
+                    <div class="wrapper-bubble">
+                        <div class="bubble">
+                            <p><?php  getCat() ?></p>
+                        </div>
+                    </div>
+                </div>
                 <?php
                 foreach (getMessage() as $message) {
                     if ($message['user_id'] == $_SESSION['user']['id']) { ?>
@@ -105,7 +113,7 @@ if(isset($_POST['text'])) {
                         </div>
                     <?php } else { ?>
                         <div class="foreign-text text">
-                            <img src="assets/images/<?php echo $_SESSION['user']['picture'] ?>" alt="profile picture">
+                            <img class="pp" src="assets/images/<?php echo $message['picture'] ?>" alt="profile picture">
                             <div class="wrapper-bubble">
                                 <div class="bubble">
                                     <p><?php echo $message['message'] ?></p>
