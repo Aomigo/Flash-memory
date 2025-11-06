@@ -65,14 +65,49 @@ function getTime($created_at)
 }
 
 //Copied from registeFormTreatment since getPDO problem;
-function SearchForSpecialCharsInString($data){
+function searchForSpecialCharsInString($data){
     return (bool) preg_match('/[&@#$?]/', $data);
 }
 
-function SearchForDigitsInString($data){
+function searchForDigitsInString($data){
     return preg_match("/[0-9]/", $data);
 }
 
-function SearchForUppercaseInString($data){
+function searchForUppercaseInString($data){
     return preg_match("/[A-Z]/", $data);
+}
+
+function cleanData($data){
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8');
+    return $data;
+}
+
+function checkForNoEmptyField(array $data){
+    $emptyField = false;
+
+    foreach($data as $field){
+        $emptyField = $emptyField || empty($field);
+        if($emptyField) break;
+    }
+
+    return $emptyField;
+}
+
+function cleanDatasInAnArray(array $array){
+    foreach($array as $data){
+        $data = cleanData($data);
+    }
+}
+
+function checkDataInDataBase($dataToCheck, $tableToCheck, $columnToCheck){
+    $pdo = getPDO();
+    $sql = "SELECT `$columnToCheck` FROM `$tableToCheck` WHERE `$columnToCheck` = ?";
+    $checkData = $pdo->prepare($sql);
+    $checkData->execute([$dataToCheck]);
+
+    return $checkData->fetchColumn();
+}
+
+function constructErrorMessage($message){
+    return "<p class='errorMessage'>" . $message . "</p>";
 }

@@ -1,6 +1,7 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/partials/functions.php';
 @session_start();
+
 function tryLogin($post)
 {
     if (!isset($post['password'], $post['email'])) {
@@ -74,13 +75,13 @@ function changePassword($password)
  if(strlen($password) < PASSWORD_MIN_LENGTH){
     $flag = true;
 }
-elseif(!SearchForDigitsInString($password)){
+elseif(!searchForDigitsInString($password)){
     $flag = true;
 }
-elseif(!SearchForSpecialCharsInString($password)){
+elseif(!searchForSpecialCharsInString($password)){
     $flag = true;
 }
-elseif(!SearchForUppercaseInString($password)){
+elseif(!searchForUppercaseInString($password)){
     $flag = true;
 }
 
@@ -96,4 +97,78 @@ elseif(!SearchForUppercaseInString($password)){
     header('location: account.php?password=success');
     return;
 }
+
+function tryRegister($post)
+{
+    define("PASSWORD_MIN_LENGTH", 8);
+    define("PSEUDO_MIN_LENGTH", 4);
+
+    $email = $post["email"] ?? "";
+    $password = $post["password"] ?? "";
+    $confirm_password = $post["confirm_password"] ?? "";
+    $pseudo = $post["pseudo"] ?? "";
+
+    $user_data = [$email, $password, $confirm_password, $pseudo];
+
+    cleanDatasInAnArray($user_data);
+
+    if(checkForNoEmptyField($user_data)){
+        echo constructErrorMessage("Please fill all field");
+        header('Cache-Control: no-cache, must-revalidate');
+        return;
+    }
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo constructErrorMessage("Invalid email format");
+        return;
+    }
+    elseif(!empty(checkDataInDataBase($email, "user", "email"))){
+        echo constructErrorMessage("Email already linked to an account");
+        return;
+    }
+    elseif($password != $confirm_password){
+        echo constructErrorMessage("Password confirmation different from given password");
+        return;   
+    }
+    elseif(strlen($password) < PASSWORD_MIN_LENGTH){
+        echo constructErrorMessage("Password must contain at least 8 characters");
+        return;
+    }
+    elseif(!searchForDigitsInString($password)){
+        echo constructErrorMessage("Password must contain a number");
+        return;
+    }
+    elseif(!searchForSpecialCharsInString($password)){
+        echo constructErrorMessage("Password must contain a special character");
+        return;
+    }
+    elseif(!searchForUppercaseInString($password)){
+        echo constructErrorMessage("Password must contain an uppercase");
+        return;
+    }
+    elseif(strlen($pseudo) < PSEUDO_MIN_LENGTH){
+        echo constructErrorMessage("Pseudo must contain 4 characters minimum");
+        return;
+    }
+    elseif (!Empty(checkDataInDataBase($pseudo, "user", "pseudo"))) {
+        echo constructErrorMessage("Pseudo already used");
+    
+        return;
+    }
+    else{
+        $pdo = getPDO();
+        $password = password_hash($password, PASSWORD_DEFAULT);
+
+        $stmt = $pdo->prepare("INSERT INTO `user`(email, password, pseudo, created_at, updated_at, picture) VALUES (?, ?, ?, NOW(),NOW(),'assets/images/picture.jpg')");
+        $stmt->execute([$email, $password, $pseudo]);
+        $getUser = $pdo->prepare("SELECT * FROM user WHERE email = :email");
+        $getUser->execute([':email' => $email]);
+        $user = $getUser->fetch();
+        session_start();
+        $_SESSION["user"]= $user;
+        header('Location: index.php?login=success');
+        exit;
+    }
+}
+
+
 
