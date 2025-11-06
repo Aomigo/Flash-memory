@@ -16,6 +16,11 @@ footer {
     color: black;
 }
 
+.feint {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgb(206, 206, 206);
+}
 
 nav {
     padding: 10px;
