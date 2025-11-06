@@ -47,8 +47,14 @@ elseif (!Empty(CheckDataInDataBase($pseudo, "user", "pseudo", $pdo))) {
 else{
     $password = password_hash($password, PASSWORD_DEFAULT);
 
-    $stmt = $pdo->prepare("INSERT INTO `user`(email, password, pseudo, created_at) VALUES (?, ?, ?, NOW())");
+    $stmt = $pdo->prepare("INSERT INTO `user`(email, password, pseudo, created_at, updated_at, picture) VALUES (?, ?, ?, NOW(),NOW(),'picture.jpg')");
     $stmt->execute([$email, $password, $pseudo]);
+    $getUser = $pdo->prepare("SELECT * FROM user WHERE email = :email");
+    $getUser->execute([':email' => $email]);
+    $user = $getUser->fetch();
+    session_start();
+    $_SESSION["user"]= $user;
+    header('Location: index.php?login=success');
 }
 
 function CleanData($data){

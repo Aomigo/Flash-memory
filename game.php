@@ -124,7 +124,7 @@ if(isset($_POST['text'])) {
                 <button class="send-button" type="submit" value="Send"><i class="ri-send-plane-fill"></i></button>
             </form>
         </div>
-        <div class="global-button"><i class="ri-arrow-up-s-line"></i></div>
+        <div class="global-button"><i class="ri-arrow-down-s-line"></i></div>
     </main>
     <?php include 'partials/footer.php'; ?>
     <script src="assets/js/script.js"></script>
