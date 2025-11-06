@@ -30,7 +30,7 @@ main {
 .banner {
   padding: 80px;
   background-color: #070320;
-  background-image: url(../Image/8bdd2c3954dcf48e04c5934bbab4c1a3cbcad318.png);
+  background-image: url(../images/8bdd2c3954dcf48e04c5934bbab4c1a3cbcad318.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -91,7 +91,7 @@ main {
 
 .WebSiteStats {
   background-color: #070320;
-  background-image: url(../Image/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
+  background-image: url(../images/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
