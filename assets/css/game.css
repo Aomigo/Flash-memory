@@ -166,6 +166,11 @@ box-shadow: 5px 5px 15px 5px #000000;
 .global-chat .chat {
     height: 400px;
     background-color: white;
+    overflow: scroll;
+}
+
+.global-chat form {
+    position: relative;
 }
 
 .global-chat textarea {
@@ -183,9 +188,31 @@ box-shadow: 5px 5px 15px 5px #000000;
     outline: none;
 }
 
+.send-button {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #D80027;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ri-send-plane-fill {
+    font-size: 22px;
+    color: white;
+}
+
+
 .text {
     display: flex;
-    align-items: end;
+    align-items: center;
     flex-direction: row;
     margin-bottom: 15px;
     padding: 10px 15px;
@@ -211,6 +238,10 @@ box-shadow: 5px 5px 15px 5px #000000;
 
 }
 
+.bubble {
+    min-width: 50px;
+}
+
 .my-text .bubble {
     background-color: #D80027;  
 }
@@ -218,14 +249,32 @@ box-shadow: 5px 5px 15px 5px #000000;
 .foreign-text .bubble {
     background-color: #F2F2F2;
     color: black;
-    margin-left: 20px;
+}
+
+.wrapper-bubble {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.me {
+    align-items: end;
+}
+
+.timestamp {
+    color: gray;
+    font-size: x-small;
+    font-weight: 300;
 }
 
 .global-chat img {
     height: 100%;
     border-radius: 50%;
     width: 40px;
+    position: relative;
+    bottom: 5px;
 }
+
 
 
 .show {

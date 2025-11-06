@@ -1,5 +1,6 @@
 <?php 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/partials/functions.php';
+session_start();
 function tryLogin($post) {
     if(!isset($post['password'], $post['email'])) {
         echo 'ERROR, email or password not set';
@@ -30,4 +31,16 @@ function tryLogin($post) {
 }
 
 //password_verify($post['password'], $user['password'])
+
+function trySending( $post ) {
+    if(!isset($post['text'])) {
+        echo 'Send a message';
+        return;
+    }
+    $pdo = getPDO();
+    $try = $pdo->prepare("INSERT INTO message (game_id, user_id, message, created_at) VALUES (?,?,?,NOW())");
+    $exec = $try->execute(['1', $_SESSION['user']['id'], $post['text']]);
+    header('Location: game.php');
+    exit;
+}
 ?>
