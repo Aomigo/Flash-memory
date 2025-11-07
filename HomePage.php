@@ -102,27 +102,27 @@
             <div class="AllStats">
 
                 <div class="stat blue">
-                    <p class="centerP">310</p>
+                    <p class="centerP"><?php echo $gamesPlayed ?></p>
                     <p class="center">Games played</p>
                 </div>
 
                 <div class="stat white">
-                    <p class="centerP">1020</p>
+                    <p class="centerP"><?php echo $totalConnected ?></p>
                     <p class="center">Players online</p>
                 </div>
 
                 <div class="stat orange">
-                    <p class="centerP">10s</p>
+                    <p class="centerP"><?php echo $bestScore ?></p>
                     <p class="center">Best time</p>
                 </div>
 
                 <div class="stat red">
-                    <p class="centerP">9300</p>
+                    <p class="centerP"><?php echo $totalUsers ?></p>
                     <p class="center">Player registred</p>
                 </div>
 
                 <div class="stat orange">
-                    <p class="centerP">2</p>
+                    <p class="centerP"><?php echo $recordBeat ?></p>
                     <p class="center">Record beat today</p>
                 </div>
             </div>
