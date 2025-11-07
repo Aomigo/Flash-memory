@@ -1,4 +1,8 @@
 <header>
+    <?php if(!isset($_SESSION['user'])) {
+        header("Location:". RootUrl() ."login.php");
+    }
+    ?>
     <!--the nav composed of 4 elements-->
     <nav>
         <div class="logo"> <img src="<?php echo RootUrl(); ?>assets/images/logo.png" alt="logo">
