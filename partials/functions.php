@@ -113,7 +113,7 @@ function checkDataInDataBase($dataToCheck, $tableToCheck, $columnToCheck){
 }
 
 function constructErrorMessage($message){
-    return "<p class='errorMessage'>" . $message . "</p>";
+    return "<p class='errorMessage fullWidth'>" . $message . "</p>";
 }
 
 //Fetch of the cat Api, Meow :3

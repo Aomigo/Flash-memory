@@ -1,5 +1,6 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/partials/functions.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/mailer/mailer.php';
 @session_start();
 
 function tryLogin($post)
@@ -170,5 +171,26 @@ function tryRegister($post)
     }
 }
 
+function trySendingContactMail($post)
+{
+    $email = $post["email"] ?? "";
+    $firstName = $post["firstName"] ?? "";
+    $lastName = $post["lastName"] ?? "";
+    $message = $post["message"] ?? "";
 
+    $datas = [$email, $firstName, $lastName, $message];
 
+    cleanDatasInAnArray($datas);
+
+    if(checkForNoEmptyField($datas)){
+        echo constructErrorMessage("Please fill all field");
+        header('Cache-Control: no-cache, must-revalidate');
+        return;
+    }
+    elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        echo constructErrorMessage("Invalid email format");
+        return;
+    }
+
+    sendContactMail($firstName, $lastName, $email, $message);
+}

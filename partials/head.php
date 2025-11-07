@@ -20,6 +20,6 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/common.php';
 
     <link rel="icon" href="assets/images/logo.png">
     <title>PLACE HOLDER TITLE</title>
-</head>
+
 
 
