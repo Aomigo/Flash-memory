@@ -1,6 +1,6 @@
 <?php
 
-require 'db.php';
+require 'database.php';
 
 //NB USER
 
@@ -17,7 +17,7 @@ $totalConnected = (int)$stmt->fetchColumn();
 
 // BEST TIME
 
-$bestScore = $pdo->query('SELECT score FROM score ORDER BY score ASC LIMIT 1')
+$bestScore = $pdo->query('SELECT user_score FROM score ORDER BY user_score ASC LIMIT 1')
 
 // GAMES PLAYED TODAY
 
@@ -26,25 +26,25 @@ $gamesPlayed = (int)$stmt->fetchColumn();
 
 // RECORD BEAT TODAY
 
-$stmt = $pdo->prepare("SELECT valeur, date_score FROM score WHERE DATE(date_score) = CURDATE() ORDER BY date_score ASC");
+$stmt = $pdo->prepare("SELECT user_score, created_at FROM score WHERE DATE(date_score) = CURDATE() ORDER BY date_score ASC");
 $stmt->execute();
 $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $recordBeat = 0;
 $actualRecord = null;
 
-// 2. Boucle sur les scores pour détecter les records battus
+// Boucle sur les scores pour détecter les records battus
 foreach ($scores as $s) {
-    $valeur = floatval($s['valeur']);
+    $value = floatval($s['user_score']);
     
     // Premier score → c’est le record initial
     if ($actualRecord === null) {
-        $actualRecord = $valeur;
+        $actualRecord = $value;
     } else {
         // Si un score est inférieur au record actuel → record battu !
-        if ($valeur < $actualRecord) {
+        if ($value < $actualRecord) {
             $recordBeat++;
-            $actualRecord = $valeur; // Nouveau record
+            $actualRecord = $value; // Nouveau record
         }
     }
 }

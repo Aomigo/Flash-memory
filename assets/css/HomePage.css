@@ -14,7 +14,7 @@ main {
 .banner {
   padding: 80px;
   background-color: #070320;
-  background-image: url(../Image/8bdd2c3954dcf48e04c5934bbab4c1a3cbcad318.png);
+  background-image: url(../images/8bdd2c3954dcf48e04c5934bbab4c1a3cbcad318.png);
   background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
@@ -56,6 +56,12 @@ main {
   flex-direction: row;
 }
 
+.GameSelect .text {
+  text-align: center;
+  color: white;
+  text-decoration: none;
+}
+
 /* Bloc3 */
 
 .Bloc3 {
@@ -75,7 +81,7 @@ main {
 
 .WebSiteStats {
   background-color: #070320;
-  background-image: url(../Image/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
+  background-image: url(../images/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -89,12 +95,29 @@ main {
   font-size: 64px;
 }
 
-.WebSiteStats .stat{
-  width: 233px;
-  height: 129.79px;
-  border-radius: 5px;
+.WebSiteStats .stats-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 800px;
+  gap: 50px;
+  row-gap: 50px;
 }
-  
+
+.WebSiteStats .stat {
+  width: 233px;
+  height: 130px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.WebSiteStats .stat:nth-child(4),
+.WebSiteStats .stat:nth-child(5) {
+  transform: translateY(30px);
+}
 
 .WebSiteStats .stat.blue{
   background-color: #019ADC;
