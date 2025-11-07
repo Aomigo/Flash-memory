@@ -1,9 +1,9 @@
 <?php
 include $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/validators.php';
-if(isset($_POST["password"])) {
+if (isset($_POST["password"])) {
     changePassword($_POST["password"]);
 }
-if(isset($_POST["mail"])) {
+if (isset($_POST["mail"])) {
     changeEmail($_POST["mail"]);
 
 }
@@ -16,10 +16,11 @@ if(isset($_POST["mail"])) {
 <?php include 'partials/head.php'; ?>
 <link rel="stylesheet" href="assets/css/account.css">
 </head>
+
 <body>
     <?php include 'partials/header.php'; ?>
     <main>
-    <?php if (isset($_GET['mail']) && $_GET['mail'] === 'success'): ?>
+        <?php if (isset($_GET['mail']) && $_GET['mail'] === 'success'): ?>
             <p class="success-message">Mail successfully changed !</p>
         <?php endif; ?>
         <?php if (isset($_GET['mail']) && $_GET['mail'] === 'error'): ?>
@@ -44,14 +45,14 @@ if(isset($_POST["mail"])) {
             <div class="score">
                 <h2>Best score :</h2>
                 <div>
-                    <?php 
-                    if (isset(getBestScore()['score'] )) {
-                    ?>
-                    <p class="bold"><?php echo getBestScore()['score'] ?></p>
-                    <p class="diff"><?php echo getBestScore()['difficulty'] ?></p>
+                    <?php
+                    if (isset(getBestScore()['score'])) {
+                        ?>
+                        <p class="bold"><?php echo getBestScore()['score'] ?></p>
+                        <p class="diff"><?php echo getBestScore()['difficulty'] ?></p>
                     <?php } else { ?>
                         <p class="bold">No score set yet ! </p>
-                        <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
             <div class="modify">
@@ -70,10 +71,8 @@ if(isset($_POST["mail"])) {
                     </form>
                 </div>
                 <?php
-                if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['picture'])) 
-                    {
-                    if(savePictureOnDisk($_SESSION['user']['id'], $_FILES['picture']['name'])) 
-                        {
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['picture'])) {
+                    if (savePictureOnDisk($_SESSION['user']['id'], $_FILES['picture']['name'])) {
                         header('Location: account.php');
                         exit;
                     } else {

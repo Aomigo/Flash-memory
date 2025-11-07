@@ -99,9 +99,14 @@ if (isset($_POST['text'])) {
                             <p><?php  getCat() ?></p>
                         </div>
                     </div>
-                </div>
+            </div>
                 <?php
                 foreach (getMessage() as $message) {
+                    if($message['picture'] !== 'picture.jpg') {
+                        $profile = $message['user_id'] .'/'. $message['picture'];
+                    } else {
+                        $profile = $message['picture'];
+                    }
                     if ($message['user_id'] == $_SESSION['user']['id']) { ?>
                         <div class="my-text text">
                             <div class="wrapper-bubble me">
@@ -113,7 +118,8 @@ if (isset($_POST['text'])) {
                         </div>
                     <?php } else { ?>
                         <div class="foreign-text text">
-                            <img class="pp" src="assets/images/<?php echo $message['picture'] ?>" alt="profile picture">
+
+                            <img class="pp" src="assets/images/<?php echo $profile ?>" alt="profile picture">
                             <div class="wrapper-bubble">
                                 <div class="bubble">
                                     <p><?php echo $message['message'] ?></p>
