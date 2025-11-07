@@ -132,3 +132,66 @@ function insertScore() {
     $stmt->execute([$_SESSION['user']['id'], rand(1,3), rand(100, 4000)]);
     return;
 }
+
+function retrieveUserPicture($userId)
+{
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/common.php';
+    
+    $pdo = getPDO();
+    $getPicture = $pdo->prepare('SELECT picture FROM user WHERE id = ?');
+    $getPicture->execute([$userId]);
+    $pictureName = $getPicture->fetchColumn();
+    
+    // Check if user has a custom uploaded picture in their folder
+    $baseDir = 'assets/images/';
+    $userDir = $baseDir . $userId . '/';
+
+
+    $customPicturePath = $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/' . $userDir . $pictureName;
+    
+    if(file_exists($customPicturePath)) {
+        return $userDir . $pictureName;
+    }
+    
+    // Otherwise return the default picture path from database
+    return $baseDir. $pictureName;
+}
+
+function sendPictureToDatabase($userId, $pictureName)
+{
+    $pdo = getPDO();
+    $updatePicture = $pdo->prepare('UPDATE user SET picture = ? WHERE id = ?');
+    $updatePicture->execute([$pictureName, $userId]);
+}
+
+function savePictureOnDisk($userId, $pictureName)
+{
+    $pdo = getPDO();
+    // Expected path
+    $targetDir = $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/assets/images/' . $userId . '/';
+    
+    // Create directory if it doesn't exist
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    } else {
+        // Get the old picture name from database
+        $query = $pdo->prepare('SELECT picture FROM user WHERE id = ?');
+        $query->execute([$userId]);
+        $oldPictureName = $query->fetchColumn();
+
+        // Delete old file on disk if it exists
+        $oldPicturePath = $targetDir . $oldPictureName;
+        if (file_exists($oldPicturePath)) {
+            unlink($oldPicturePath);
+        }
+    }
+    
+    // Save new picture
+    $newPicturePath = $targetDir . basename($pictureName);
+    if (move_uploaded_file($_FILES['picture']['tmp_name'], $newPicturePath)) {
+        sendPictureToDatabase($userId, basename($pictureName));
+        return true;
+    }
+    
+    return false;
+}

@@ -34,7 +34,7 @@ if(isset($_POST["mail"])) {
         <div class="main-wrapper">
             <div class="info">
                 <div class="image">
-                    <img src="assets/images/<?php echo $_SESSION['user']['picture'] ?>" alt="default user">
+                    <img src="<?php echo retrieveUserPicture($_SESSION['user']['id']); ?>" alt="default user">
                     <h2><?php echo $_SESSION['user']['pseudo'] ?></h2>
                 </div>
                 <div class="text">
@@ -66,6 +66,26 @@ if(isset($_POST["mail"])) {
                     <form action="" method="POST">
                         <label for="password">Change Password</label>
                         <input type="password" name="password" id="password" placeholder="Your new password here">
+                        <button type="submit">Change</button>
+                    </form>
+                </div>
+                <?php
+                if($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['picture'])) 
+                    {
+                    if(savePictureOnDisk($_SESSION['user']['id'], $_FILES['picture']['name'])) 
+                        {
+                        header('Location: account.php');
+                        exit;
+                    } else {
+                        echo '<p class="errorMessage">Error while uploading picture, please try again.</p>';
+                    }
+                }
+                ?>
+                <div class="picture">
+                    <!-- the enctype is mandatory for file uploads -->
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        <label for="picture">Change Picture</label>
+                        <input type="file" name="picture" id="picture" accept="image/*">
                         <button type="submit">Change</button>
                     </form>
                 </div>

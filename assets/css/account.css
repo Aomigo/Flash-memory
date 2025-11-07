@@ -79,7 +79,8 @@ input:focus {
 }
 
 .mail form,
-.password form {
+.password form,
+.picture form {
     display: flex;
     flex-direction: column;
 }
