@@ -24,16 +24,17 @@ if (isset($_POST['text'])) {
                 <form action="#" method="get">
                     <div class="difficulty">
                         <label for="difficulty">Grid Difficulty</label>
-                        <select name="difficulty" id="difficulty">
+                        <select class="difficulty-menu" name="difficulty" id="difficulty">
+                            <option style="display:none" value="default" selected>Select an option</option>
                             <option value="easy">4x4</option>
                             <option value="medium">6x6</option>
                             <option value="hard">8x8</option>
-                            <option value="impossible">10x10</option>
                         </select>
                     </div>
                     <div class="theme">
                         <label for="theme">Choose a theme</label>
-                        <select name="theme" id="theme">
+                        <select class="game-menu" name="theme" id="theme">
+                            <option style="display:none" value="default" selected>Select an option</option>
                             <option value="flowers">Flowers</option>
                             <option value="lord">Lord of the rings</option>
                             <option value="instruments">instruments</option>
@@ -86,7 +87,7 @@ if (isset($_POST['text'])) {
                 </div>
             </section>
         </div>
-        <div class="global-chat show">
+        <div class="global-chat">
             <div class="global-header">
                 <i class="ri-arrow-left-s-line"></i>
                 <p>Power Of Memory</p>
@@ -142,6 +143,7 @@ if (isset($_POST['text'])) {
     </main>
     <?php include 'partials/footer.php'; ?>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/game.js"></script>
 </body>
 
 </html>

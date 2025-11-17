@@ -48,11 +48,23 @@ main {
 }
 
 .grid {
-   max-width: 800px;
+   max-width: 1000px;
     margin: 50px auto;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
+}
+
+.easy {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.medium {
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.hard {
+    grid-template-columns: repeat(8, 1fr);
 }
 
 .grid img {
@@ -61,8 +73,13 @@ main {
     box-shadow: 5px 5px 15px 5px #000000;
     cursor: pointer;
     aspect-ratio: 1 / 1;
+}
 
-
+.card {
+    background-color: rgb(255, 251, 0);
+    border-radius: 20px;
+    width: 80px;
+    height:80px;
 }
 
 
