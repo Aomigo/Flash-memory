@@ -48,7 +48,7 @@ main {
     padding: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -79,9 +79,16 @@ input:focus {
 }
 
 .mail form,
-.password form {
+.password form,
+.picture form {
     display: flex;
     flex-direction: column;
+}
+
+.mail,
+.password,
+.picture {
+    width: 30%;
 }
 
 form button {

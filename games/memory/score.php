@@ -3,7 +3,11 @@
 <?php require_once '../../partials/head.php'; ?>
 <link rel="stylesheet" href="../../assets/css/score.css">
 </head>
-
+<?php
+if(isset($_POST['score'])) {
+    insertScore();
+}
+?>
 <body>
     <?php require_once '../../partials/header.php'; ?>
     <main>
@@ -13,7 +17,9 @@
                 <p>Do you have the spirit of competition ?</p>
                 <p>Try and beat those Scores, and prove your worth !</p>
             </div>
-
+            <form action="" method="POST">
+                <button type="submit" name="score">Generate random score</button>
+            </form>
             <section class="table">
                 <table>
                     <thead>
@@ -30,7 +36,6 @@
                     <tbody>
                         <?php
                         $s = 1;
-                        var_dump($_SESSION['user']['id']);
                             foreach(getScore() as $i) {
                                 echo ($i['id'] == $_SESSION['user']['id']) ? '<tr class="me">' : '<tr>';
                                 ?>
@@ -69,7 +74,7 @@
                     </div>
                 </div>
                 <div class="img-wrapper">
-                    <img src="assets/images/controller.jpg" alt="xbox controller">
+                    <img src="../../assets/images/controller.jpg" alt="xbox controller">
                 </div>
             </section>
         </div>

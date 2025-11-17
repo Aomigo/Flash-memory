@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
-<?php require 'StatsServeur.php' ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] .'/Flash-memory/utils/statsServer.php' ?>
 
 <body>
     <?php include 'partials/header.php'; ?>
@@ -89,8 +89,8 @@
                     <p class="center">Players online</p>
                 </div>
 
-                <div class="stat orange">
-                    <h1 class="center"><?php echo $bestScore ?></h1>
+                <div class="stat orange"> 
+                    <h1 class="center"><?php echo $best['score'] ?></h1>
                     <p class="center">Best time</p>
                 </div>
 

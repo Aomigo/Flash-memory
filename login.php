@@ -45,7 +45,7 @@ if(isset($_POST['email'])) {
 
                 <div class = "account">
                     <p>No account ?</p>
-                    <a class="link">Register !</a>
+                    <a class="link" href="register.php">Register !</a>
                 </div>
 
             </div>
