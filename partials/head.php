@@ -19,7 +19,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Flash-memory/utils/common.php';
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
 
     <link rel="icon" href="assets/images/logo.png">
-    <title>PLACE HOLDER TITLE</title>
+    <title>Power of memory</title>
 
 
 
