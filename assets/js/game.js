@@ -4,7 +4,7 @@ const gameBtn = document.querySelector('.game-start');
 const gameField = document.querySelector('.grid');
 const gameForm = document.querySelector('#gameForm');
 const timer = document.querySelector('#timer');
-
+const body = document.querySelector('body')
 
 let themeArray = []
 let definiteArray = []
@@ -81,6 +81,9 @@ theme.addEventListener('change', function () {
 //starting the game
 gameBtn.addEventListener('click', e => {
     e.preventDefault();
+    difficulty.setAttribute('disabled', '')
+    theme.setAttribute('disabled', '')
+    gameBtn.setAttribute('disabled', '')
     gameOn();
 })
 
@@ -186,6 +189,7 @@ function gameOn() {
                             c.classList.remove("turning");
                             c.classList.add("found");
                         });
+                        checkForFinish()
                     } else {
                         console.log("missed");
                         choosed.forEach(c => {
@@ -215,6 +219,27 @@ function gameOn() {
     gameTimer.startTimer();
 }
 
+function checkForFinish() {
+    let finish = true
+    const cards = document.querySelectorAll('.card');
+    for(let i = 0; i < cards.length; i++) {
+        if(!cards[i].classList.contains('found'))
+            finish = false;
+    }
+
+    if(finish) {
+        let popup = document.querySelector('.finish-popup')
+        let time = document.querySelector('.finish-popup .text h1')
+        let diffy = document.querySelector('.finish-popup .text p')
+        time.innerHTML = gameTimer.getTimer()
+        diffy.innerHTML = difficulty.value
+        console.log(gameTimer.getTimer())
+        gameTimer.stopTimer()
+        popup.classList.remove('hidden')
+        body.classList.add('unscrollable')
+        //end the game, need the difficulty and the time
+    }
+}
 
 //debbug to test timer stop, to delete for presentation
 timer.addEventListener('click', function(event) {
