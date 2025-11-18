@@ -1,42 +1,41 @@
 <?php
 
-require 'database.php';
+require 'database.php'; 
 
-$pdo = getPDO();
 //NB USER
 
-$stmt = $pdo->query('SELECT COUNT(id) FROM user');
+$stmt = $pdo->query('SELECT COUNT(id) FROM users');
 $totalUsers = (int)$stmt->fetchColumn();
 
 // NB CONNECTED USER
 
-$pdo->prepare('UPDATE user SET updated_at = NOW() WHERE id = :id')
-    ->execute(['id' => $_SESSION['user']['id']]);
+$pdo->prepare('UPDATE user SET last_activity = NOW() WHERE id = :id')
+    ->execute(['id' => $_SESSION['user_id']]);
 
-$stmt = $pdo->query('SELECT COUNT(id) FROM user WHERE updated_at >= NOW() - INTERVAL 5 MINUTE');
+$stmt = $pdo->query('SELECT COUNT(id) FROM user WHERE last_activity >= NOW() - INTERVAL 5 MINUTES');
 $totalConnected = (int)$stmt->fetchColumn();
 
 // BEST TIME
 
-$bestScore = $pdo->query('SELECT score FROM score ORDER BY score DESC, difficulty DESC LIMIT 1 ');
-$best = $bestScore->fetch();
+$bestScore = $pdo->query('SELECT user_score FROM score ORDER BY user_score ASC LIMIT 1')
+
 // GAMES PLAYED TODAY
 
-$stmt = $pdo->query('SELECT COUNT(id) FROM score WHERE created_at = NOW() - INTERVAL 1 DAY');
+$stmt = $pdo->query('SELECT COUNT(id) FROM score WHERE created_at = NOW() - 24 HOURS');
 $gamesPlayed = (int)$stmt->fetchColumn();
 
 // RECORD BEAT TODAY
 
-$stmt = $pdo->prepare("SELECT score, created_at FROM score WHERE DATE(created_at) = CURDATE() ORDER BY created_at ASC");
+$stmt = $pdo->prepare("SELECT user_score, created_at FROM score WHERE DATE(date_score) = CURDATE() ORDER BY date_score ASC");
 $stmt->execute();
 $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 $recordBeat = 0;
 $actualRecord = null;
 
-// 2. Boucle sur les scores pour détecter les records battus
+// Boucle sur les scores pour détecter les records battus
 foreach ($scores as $s) {
-    $value = floatval($s['score']);
+    $value = floatval($s['user_score']);
     
     // Premier score → c’est le record initial
     if ($actualRecord === null) {

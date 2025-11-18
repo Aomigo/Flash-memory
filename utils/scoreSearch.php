@@ -4,7 +4,7 @@ require 'database.php';
 
 // Récupération de la saisis de l'utilisateur
 
-if (isset($_GET['q'])) {
+if (isset($_GET['search'])) {
     $recherche = trim($_GET['search']);
 } else {
     $recherche = '';
@@ -12,7 +12,7 @@ if (isset($_GET['q'])) {
 
 // Préparation et envoie de la recherche avec des jokers pour les recherche flou
 
-$stmt = $pdo->prepare("SELECT * FROM user WHERE username LIKE :recherche ORDER BY username ASC");
+$stmt = $pdo->prepare("SELECT * FROM user WHERE username LIKE :pseudo ORDER BY pseudo ASC");
 
 $stmt->execute(['recherche' => "%$recherche%"]);
 
