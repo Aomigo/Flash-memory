@@ -7,12 +7,18 @@ const gameField = document.querySelector('.grid')
 let themeArray = []
 let definiteArray = []
 let flag = false
+let locked = false
 let imgUrl = ""
+let choseArray = []
 
 
-// `card, ${i}`
 // Adding the layer of difficulty
 difficulty.addEventListener('change', function () {
+    //repopulate if changing while theme is already selected
+    if (theme.value !== 'default') {
+        themed(difficulty.value)
+        implementing()
+    }
     switch (difficulty.value) {
         case "easy":
             gameField.innerHTML = ""
@@ -68,34 +74,16 @@ theme.addEventListener('change', function () {
             themed(difficulty.value)
             break;
     }
-
-    for (i = 0; i < themeArray.length; i++) {
-        definiteArray.push(`assets/themes/${imgUrl}/${themeArray[i]}.webp`)
-        definiteArray.push(`assets/themes/${imgUrl}/${themeArray[i]}.webp`)
-        //envoyer en back, avec le themeArray, les divs dans l'ordre. On compare la bas
-    }
-    shuffleArray(definiteArray)
-    console.log(definiteArray)
+    implementing()
 })
-
+//starting the game
 gameBtn.addEventListener('click', e => {
     e.preventDefault();
     gameOn()
 })
 
 
-
-function random() {
-    let rand = Math.floor(Math.random() * (32 - 1) + 1)
-    console.log(rand)
-    if (themeArray.includes(rand)) {
-        random()
-    } else {
-        themeArray.push(rand)
-    }
-
-}
-
+//Populate the image array
 function themed(difficulty) {
     themeArray = []
     switch (difficulty) {
@@ -120,7 +108,31 @@ function themed(difficulty) {
     }
 
 }
+//while the number is the same, reroll it
+function random() {
+    let rand = Math.floor(Math.random() * (32 - 1) + 1)
+    console.log(rand)
+    if (themeArray.includes(rand)) {
+        random()
+    } else {
+        themeArray.push(rand)
+    }
 
+}
+
+//Double the images, and shuffle them in the definite array
+function implementing() {
+    definiteArray = []
+    for (i = 0; i < themeArray.length; i++) {
+        definiteArray.push(`assets/themes/${imgUrl}/${themeArray[i]}.webp`)
+        definiteArray.push(`assets/themes/${imgUrl}/${themeArray[i]}.webp`)
+        //envoyer en back, avec le themeArray, les divs dans l'ordre. On compare la bas
+    }
+    shuffleArray(definiteArray)
+    console.log(definiteArray)
+}
+
+//shuffle the definite array
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -129,34 +141,72 @@ function shuffleArray(array) {
     return array;
 }
 
-
+//game starting
 function gameOn() {
     let turned = 0;
-    //need to disable button
-    const cards = document.querySelectorAll('.card')
+    let locked = false;
+    let choseArray = [];
+
+    const cards = document.querySelectorAll('.card');
+
     cards.forEach(card => {
-        card.addEventListener('click', e => {
-            turned++
-            card.classList.add('turning')
+        card.addEventListener('click', () => {
+
+            // Prevent nonsense clicks
+            if (locked) return;
+            if (choseArray.includes(card)) return;
+            if (card.classList.contains('found')) return;
+
+            turned++;
+            card.classList.add('turning');
+            choseArray.push(card);
+
+            // Flip visuals
             setTimeout(() => {
-                card.style.backgroundColor = 'transparent'
-                card.style.backgroundImage = `url('${definiteArray[card.id]}')`
-            }, 500);
+                card.style.backgroundColor = 'transparent';
+                card.style.backgroundImage = `url('${definiteArray[card.id]}')`;
+            }, 150);
 
+            // Compare when two card are turned and lock animation
+            if (turned === 2) {
+                locked = true;
+                turned = 0;
 
-            /*fetch("../Flash-memory/utils/gameChecker.php", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ array: themeArray }) // Send as JSON
-            })
-                .then(response => response.json()) 
-                .then(data => {
-                    console.log(data);
-                })
-                .catch(error => {
-                    console.error("Error :", error);
-                });*/
-        })
+                const choosed = document.querySelectorAll('.turning');
+
+                setTimeout(() => {
+                    const match =
+                        choseArray[0].style.backgroundImage === choseArray[1].style.backgroundImage;
+
+                    if (match) {
+                        console.log("found");
+                        choosed.forEach(c => {
+                            c.classList.remove("turning");
+                            c.classList.add("found");
+                        });
+                    } else {
+                        console.log("missed");
+                        choosed.forEach(c => {
+                            c.classList.remove("turning");
+                            c.classList.add("turning-back");
+
+                            setTimeout(() => {
+                                c.style.backgroundColor = 'yellow';
+                                c.style.backgroundImage = '';
+                            }, 400);
+
+                            setTimeout(() => {
+                                c.classList.remove("turning-back");
+                            }, 700);
+                        });
+                    }
+
+                    // Reset
+                    choseArray = [];
+                    locked = false;
+
+                }, 500);
+            }
+        });
     });
-
 }
