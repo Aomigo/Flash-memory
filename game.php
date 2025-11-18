@@ -141,6 +141,15 @@ if (isset($_POST['text'])) {
             </form>
         </div>
         <div class="global-button"><i class="ri-arrow-down-s-line"></i></div>
+
+        <div class="finish-popup hidden">
+            <div class="close"></div>
+            <div class="text">
+                <h1>time</h1>
+                <p>difficulty</p>
+            </div>
+            <button>Play Again ?</button>
+        </div>
     </main>
     <?php include 'partials/footer.php'; ?>
     <script src="assets/js/script.js"></script>
