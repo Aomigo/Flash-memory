@@ -1,7 +1,9 @@
-const difficulty = document.querySelector('.difficulty-menu')
-const theme = document.querySelector('.game-menu')
-const gameBtn = document.querySelector('.game-start')
-const gameField = document.querySelector('.grid')
+const difficulty = document.querySelector('.difficulty-menu');
+const theme = document.querySelector('.game-menu');
+const gameBtn = document.querySelector('.game-start');
+const gameField = document.querySelector('.grid');
+const gameForm = document.querySelector('#gameForm');
+const timer = document.querySelector('#timer');
 
 
 let themeArray = []
@@ -79,7 +81,7 @@ theme.addEventListener('change', function () {
 //starting the game
 gameBtn.addEventListener('click', e => {
     e.preventDefault();
-    gameOn()
+    gameOn();
 })
 
 
@@ -209,4 +211,61 @@ function gameOn() {
             }
         });
     });
+
+    gameTimer.startTimer();
+}
+
+
+//debbug to test timer stop, to delete for presentation
+timer.addEventListener('click', function(event) {
+    gameTimer.stopTimer();
+})
+
+let gameTimer = {
+    startTime: 0,
+    intervalId: null,
+    time: 0,
+
+    // Methode
+    startTimer() {
+
+        //prevent restarting timer
+        if(this.intervalId != null){
+            return;
+        }
+
+        this.startTime  = performance.now();
+        this.intervalId = setInterval(function() {
+            timer.innerHTML = gameTimer.getTimer();
+
+            clearInterval();
+        }, 10);
+    },
+    getTimer() {
+        const elapsedTime   = performance.now() - this.startTime;
+
+        // Cenvert elapsedTime (milliseconde)
+        const minutes       = Math.floor(elapsedTime / 60000);
+        const secondes      = Math.floor((elapsedTime % 60000) / 1000);
+        const millisecondes = Math.floor((elapsedTime % 1000) / 10);
+
+        // At mm:ss:ms format
+        const mm            = String(minutes).padStart(2, '0');
+        const ss            = String(secondes).padStart(2, '0');
+        const ms            = String(millisecondes).padStart(2, '0');
+
+        this.time = `${mm}:${ss}:${ms}`;
+
+        return this.time;
+    },
+    stopTimer() {
+
+        clearInterval(this.intervalId);
+        this.startTime = 0;
+        timer.innerHTML = '00:00:00';
+
+        this.time = 0;
+
+        //document.querySelector('#timer').innerHTML = '';
+    }
 }
