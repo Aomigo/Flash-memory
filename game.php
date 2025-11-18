@@ -37,10 +37,10 @@ if (isset($_POST['text'])) {
                             <option style="display:none" value="default" selected>Select an option</option>
                             <option value="flowers">Flowers</option>
                             <option value="lord">Lord of the rings</option>
-                            <option value="instruments">Animals</option>
+                            <option value="animals">Animals</option>
                         </select>
                     </div>
-                    <button type="submit">Generate a grid</button>
+                    <button class="game-start" type="submit">Generate a grid</button>
                     <div id="timer"></div>
                 </form>
                 <div class="grid">
