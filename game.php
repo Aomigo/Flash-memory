@@ -21,7 +21,7 @@ if (isset($_POST['text'])) {
                     sollicitudin.</p>
             </div>
             <div class="game-wrapper">
-                <form action="#" method="get">
+                <form id="gameForm" action="#" method="get">
                     <div class="difficulty">
                         <label for="difficulty">Grid Difficulty</label>
                         <select class="difficulty-menu" name="difficulty" id="difficulty">
@@ -37,10 +37,11 @@ if (isset($_POST['text'])) {
                             <option style="display:none" value="default" selected>Select an option</option>
                             <option value="flowers">Flowers</option>
                             <option value="lord">Lord of the rings</option>
-                            <option value="instruments">instruments</option>
+                            <option value="instruments">Animals</option>
                         </select>
                     </div>
                     <button type="submit">Generate a grid</button>
+                    <div id="timer"></div>
                 </form>
                 <div class="grid">
                     <img src="assets/images/card.jpg" alt="unturned memory card">
