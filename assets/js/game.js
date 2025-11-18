@@ -81,7 +81,7 @@ theme.addEventListener('change', function () {
 //starting the game
 gameBtn.addEventListener('click', e => {
     e.preventDefault();
-    gameOn()
+    gameOn();
 })
 
 
@@ -211,14 +211,10 @@ function gameOn() {
             }
         });
     });
-}
-
-
-gameForm.addEventListener('submit', (event) => {
-    event.preventDefault();
 
     gameTimer.startTimer();
-})
+}
+
 
 //debbug to test timer stop, to delete for presentation
 timer.addEventListener('click', function(event) {
@@ -228,6 +224,7 @@ timer.addEventListener('click', function(event) {
 let gameTimer = {
     startTime: 0,
     intervalId: null,
+    time: 0,
 
     // Methode
     startTimer() {
@@ -245,25 +242,29 @@ let gameTimer = {
         }, 10);
     },
     getTimer() {
-        const elapsedTIme   = performance.now() - this.startTime;
+        const elapsedTime   = performance.now() - this.startTime;
 
         // Cenvert elapsedTime (milliseconde)
-        const minutes       = Math.floor(elapsedTIme / 60000);
-        const secondes      = Math.floor((elapsedTIme % 60000) / 1000);
-        const millisecondes = Math.floor((elapsedTIme % 1000) / 10);
+        const minutes       = Math.floor(elapsedTime / 60000);
+        const secondes      = Math.floor((elapsedTime % 60000) / 1000);
+        const millisecondes = Math.floor((elapsedTime % 1000) / 10);
 
         // At mm:ss:ms format
         const mm            = String(minutes).padStart(2, '0');
         const ss            = String(secondes).padStart(2, '0');
         const ms            = String(millisecondes).padStart(2, '0');
 
-        return `${mm}:${ss}:${ms}`;
+        this.time = `${mm}:${ss}:${ms}`;
+
+        return this.time;
     },
     stopTimer() {
 
-        alert(gameTimer().elapsedTIme);
         clearInterval(this.intervalId);
         this.startTime = 0;
+        timer.innerHTML = '00:00:00';
+
+        this.time = 0;
 
         //document.querySelector('#timer').innerHTML = '';
     }
