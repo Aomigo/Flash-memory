@@ -13,7 +13,7 @@ function getUser()
 function getScore()
 {
     $pdo = getPDO();
-    $try = $pdo->query("SELECT s.*, u.pseudo, u.id, g.game_name FROM score s LEFT JOIN user u ON s.user_id = u.id LEFT JOIN game g ON s.game_id = g.id ORDER BY s.difficulty DESC, s.score DESC ");
+    $try = $pdo->query("SELECT s.*, u.pseudo, u.id, g.game_name FROM score s LEFT JOIN user u ON s.user_id = u.id LEFT JOIN game g ON s.game_id = g.id ORDER BY s.difficulty DESC, s.score DESC LIMIT 10");
     $results = $try->fetchAll();
     return $results;
 }
