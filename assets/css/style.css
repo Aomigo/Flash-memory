@@ -239,53 +239,6 @@ nav a:hover{
   }
 }
 
-.glow {
-
-
-@property --a {
-	syntax: '<angle>';
-	initial-value: 0deg;
-	inherits: false
-}
-
-html, body, main { display: grid }
-html { min-height: 100% }
-body { background: #0a0a12 }
-body, main { place-content: center }
-
-main {
-	grid-gap: calc(3*var(--m)*var(--b));
-	grid-template-columns: 
-		repeat(auto-fit, min(100%, 15em))
-}
-
-svg[aria-hidden='true'] { position: fixed }
-
-h1 {
-	margin: 0 .25em 2rem;
-	color: #dedede;
-	font: clamp(.625em, 1.5vw + 2vh, 3.75em) playwrite is, cursive;
-	text-align: center;
-	text-wrap: balance
-}
-
-img {
-	box-sizing: border-box;
-	border: solid var(--b) #0000;
-	width: 100%;
-	aspect-ratio: 1;
-	object-fit: cover;
-	border-radius: calc(2*var(--b));
-	background: 
-		repeating-conic-gradient(from var(--a, 0deg), 
-				var(--l, #0000 0% 70%, #0000ff7f)) border-box;
-	filter: var(--f, url(#glow-0));
-	animation: a 2s linear infinite
-}
-
-@keyframes a { to { --a: 1turn } }
-}
-
 
 @media (max-width : 768px) {
 

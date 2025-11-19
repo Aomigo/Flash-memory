@@ -157,28 +157,5 @@ if (isset($_POST['text'])) {
     <script src="assets/js/script.js"></script>
     <script src="assets/js/game.js"></script>
 </body>
-<body style="--b:6px; --m:2;">
-<svg width="0" height="0" aria-hidden="true">
-  <filter id="glow-0" x="-0.25" y="-0.25" width="1.5" height="1.5">
-    <feComponentTransfer>
-      <feFuncA type="table" tableValues="0 2 0"/>
-    </feComponentTransfer>
-    <feGaussianBlur stdDeviation="2"/>
-    <feComponentTransfer result="rond">
-      <feFuncA type="table" tableValues="-2 7"/>
-    </feComponentTransfer>
-    <feMorphology operator="dilate" radius="3"/>
-    <feGaussianBlur stdDeviation="6"/>
-    <feBlend in="rond" result="glow"/>
-    <feComponentTransfer in="SourceGraphic">
-      <feFuncA type="table" tableValues="0 0 1"/>
-    </feComponentTransfer>
-    <feBlend in2="glow"/>
-  </filter>
-</svg>
-
-<img src="https://images.unsplash.com/photo-1512206533059-361c5b6c40a4?w=400" style="filter:url(#glow-0);" />
-</body>
-
 </html>
 
