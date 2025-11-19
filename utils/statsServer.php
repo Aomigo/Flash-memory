@@ -1,8 +1,9 @@
 <?php
+@session_start();
+require_once 'database.php';  // only include once
 
-require 'database.php';
+$pdo = getPDO();  // safe, won't redeclare
 
-$pdo = getPDO();
 //NB USER
 
 $stmt = $pdo->query('SELECT COUNT(id) FROM user');
