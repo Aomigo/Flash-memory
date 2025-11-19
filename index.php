@@ -89,7 +89,7 @@
                     <p class="center">Players online</p>
                 </div>
 
-                <div class="stat orange">
+                <div class="stat orange"> 
                     <h1 class="center"><?php echo $best['score'] ?></h1>
                     <p class="center">Best time</p>
                 </div>

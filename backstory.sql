@@ -57,6 +57,7 @@ INSERT INTO `user` (`id`, `email`, `password`, `pseudo`, `created_at`, `updated_
 (3, 'engineer@gaming.org', 'youMeanTHISTeleporter?', 'Dell Conagher', NOW()),
 (4, 'super@bulked.en', 'mostBuffedGuy', 'Buffer', '2025-10-13 10:50:37', NOW()),
 (5, 'cobra@kaii.com', 'cobrafist', 'Cobra Kai', '2025-10-13 10:50:37', NOW());
+ALTER TABLE user ADD last_activity DATETIME NULL
 
 --MODIF GAME
 INSERT INTO `game` (`id`, `game_name`) VALUES

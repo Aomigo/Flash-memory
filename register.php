@@ -31,7 +31,11 @@ require_once 'utils/validators.php';
                         <div class="formGroup mb-10px">
                             <label for="password">Password :</label>
                             <input class="definedH" type="password" name="password" id = "password" placeholder="8 characters minimum" value="<?= cleanData($_POST['password'] ?? '') ?>"/>
-                        </div>
+                            <div id="strength-bar">
+                            <div id="strength-fill"></div>
+                            </div>
+                            <p id="strength-text"></p>
+                            </div>
                         <div class="formGroup mb-10px">
                             <label for="confirm_password">Confirm password :</label>
                             <input class="definedH" type="password" name="confirm_password" id = "confirm_password" placeholder="Confirm password" value="<?= cleanData($_POST['confirm_password'] ?? '') ?>"/>
@@ -64,5 +68,6 @@ require_once 'utils/validators.php';
             <figure><img src="assets/images/LoginImage.jpg" alt=""></figure>
         </div>
     </div>
-    
+    <script src="assets/js/Password.js"></script>
+
 </body>

@@ -1,9 +1,6 @@
 <?php
-@session_start();
-require_once 'database.php';  // only include once
 
-
-$pdo = getPDO();  // safe, won't redeclare
+require 'database.php';
 
 //NB USER
 
@@ -20,7 +17,7 @@ $totalConnected = (int)$stmt->fetchColumn();
 
 // BEST TIME
 
-$bestScore = $pdo->query('SELECT user_score FROM score ORDER BY user_score ASC LIMIT 1');
+$bestScore = $pdo->query('SELECT user_score FROM score ORDER BY user_score ASC LIMIT 1')
 
 // GAMES PLAYED TODAY
 
