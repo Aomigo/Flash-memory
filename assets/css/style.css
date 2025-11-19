@@ -16,6 +16,11 @@ footer {
     color: black;
 }
 
+.unscrollable {
+    overflow: hidden;
+}
+
+
 .feint {
     font-size: 13px;
     font-weight: 300;
