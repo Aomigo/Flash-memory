@@ -1,9 +1,16 @@
+//Search for the menus
 const difficulty = document.querySelector('.difficulty-menu');
 const theme = document.querySelector('.game-menu');
+//Everything related to the grid
 const gameBtn = document.querySelector('.game-start');
 const gameField = document.querySelector('.grid');
 const gameForm = document.querySelector('#gameForm');
 const timer = document.querySelector('#timer');
+//Everything related to the score popup
+const popup = document.querySelector('.finish-popup')
+const closePopup = document.querySelector('.ri-close-large-fill')
+const replayPopup = document.querySelector('.play-again')
+//body
 const body = document.querySelector('body')
 
 let themeArray = []
@@ -12,6 +19,35 @@ let flag = false
 let locked = false
 let imgUrl = ""
 let choseArray = []
+
+closePopup.addEventListener('click', e => {
+    popup.classList.add('hidden')
+    body.classList.remove('unscrollable')
+    difficulty.removeAttribute('disabled')
+    theme.removeAttribute('disabled')
+    gameBtn.removeAttribute('disabled')
+})
+
+
+replayPopup.addEventListener('click', e => {
+    shuffleArray(definiteArray)
+    shuffleArray(definiteArray)
+    popup.classList.add('hidden')
+    body.classList.remove('unscrollable')
+    difficulty.setAttribute('disabled', '')
+    theme.setAttribute('disabled', '')
+    gameBtn.setAttribute('disabled', '')
+    gameOn();
+})
+
+//starting the game
+gameBtn.addEventListener('click', e => {
+    e.preventDefault();
+    difficulty.setAttribute('disabled', '')
+    theme.setAttribute('disabled', '')
+    gameBtn.setAttribute('disabled', '')
+    gameOn();
+})
 
 
 // Adding the layer of difficulty
@@ -78,14 +114,6 @@ theme.addEventListener('change', function () {
     }
     implementing()
 })
-//starting the game
-gameBtn.addEventListener('click', e => {
-    e.preventDefault();
-    difficulty.setAttribute('disabled', '')
-    theme.setAttribute('disabled', '')
-    gameBtn.setAttribute('disabled', '')
-    gameOn();
-})
 
 
 //Populate the image array
@@ -116,7 +144,6 @@ function themed(difficulty) {
 //while the number is the same, reroll it
 function random() {
     let rand = Math.floor(Math.random() * (32 - 1) + 1)
-    console.log(rand)
     if (themeArray.includes(rand)) {
         random()
     } else {
@@ -148,6 +175,7 @@ function shuffleArray(array) {
 
 //game starting
 function gameOn() {
+    gameTimer.startTimer();
     let turned = 0;
     let locked = false;
     let choseArray = [];
@@ -155,6 +183,9 @@ function gameOn() {
     const cards = document.querySelectorAll('.card');
 
     cards.forEach(card => {
+        card.classList.remove('found')
+        card.style.backgroundColor = 'yellow';
+        card.style.backgroundImage = '';
         card.addEventListener('click', () => {
 
             // Prevent nonsense clicks
@@ -184,14 +215,12 @@ function gameOn() {
                         choseArray[0].style.backgroundImage === choseArray[1].style.backgroundImage;
 
                     if (match) {
-                        console.log("found");
                         choosed.forEach(c => {
                             c.classList.remove("turning");
                             c.classList.add("found");
                         });
                         checkForFinish()
                     } else {
-                        console.log("missed");
                         choosed.forEach(c => {
                             c.classList.remove("turning");
                             c.classList.add("turning-back");
@@ -215,82 +244,88 @@ function gameOn() {
             }
         });
     });
-
-    gameTimer.startTimer();
 }
 
 function checkForFinish() {
     let finish = true
     const cards = document.querySelectorAll('.card');
-    for(let i = 0; i < cards.length; i++) {
-        if(!cards[i].classList.contains('found'))
+    for (let i = 0; i < cards.length; i++) {
+        if (!cards[i].classList.contains('found'))
             finish = false;
     }
 
-    if(finish) {
-        let popup = document.querySelector('.finish-popup')
+    if (finish) {
         let time = document.querySelector('.finish-popup .text h1')
         let diffy = document.querySelector('.finish-popup .text p')
         time.innerHTML = gameTimer.getTimer()
         diffy.innerHTML = difficulty.value
+        //Get the data needed
+        const data = {}
+        data.score = gameTimer.getTimer()
+        data.difficulty = difficulty.value
         console.log(gameTimer.getTimer())
         gameTimer.stopTimer()
         popup.classList.remove('hidden')
         body.classList.add('unscrollable')
-        //end the game, need the difficulty and the time
+
+        //end the game, fetch the useful data to gameChecker.php
+        fetch('/Flash-memory/utils/gameChecker.php', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        }
+        )
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(err => console.error(err));
     }
 }
 
+
 //debbug to test timer stop, to delete for presentation
-timer.addEventListener('click', function(event) {
+timer.addEventListener('click', function (event) {
     gameTimer.stopTimer();
 })
 
-let gameTimer = {
-    startTime: 0,
+const gameTimer = {
     intervalId: null,
-    time: 0,
+    startTime: 0,
+    time: "00:00:00",
 
-    // Methode
     startTimer() {
+        if (this.intervalId !== null) return;
 
-        //prevent restarting timer
-        if(this.intervalId != null){
-            return;
-        }
+        this.startTime = performance.now();
 
-        this.startTime  = performance.now();
-        this.intervalId = setInterval(function() {
-            timer.innerHTML = gameTimer.getTimer();
-
-            clearInterval();
+        this.intervalId = setInterval(() => {
+            timer.innerHTML = this.getTimer();
         }, 10);
     },
+
     getTimer() {
-        const elapsedTime   = performance.now() - this.startTime;
+        const elapsedTime = performance.now() - this.startTime;
 
-        // Cenvert elapsedTime (milliseconde)
-        const minutes       = Math.floor(elapsedTime / 60000);
-        const secondes      = Math.floor((elapsedTime % 60000) / 1000);
-        const millisecondes = Math.floor((elapsedTime % 1000) / 10);
+        const minutes = Math.floor(elapsedTime / 60000);
+        const seconds = Math.floor((elapsedTime % 60000) / 1000);
+        const milliseconds = Math.floor((elapsedTime % 1000) / 10);
 
-        // At mm:ss:ms format
-        const mm            = String(minutes).padStart(2, '0');
-        const ss            = String(secondes).padStart(2, '0');
-        const ms            = String(millisecondes).padStart(2, '0');
+        const mm = String(minutes).padStart(2, '0');
+        const ss = String(seconds).padStart(2, '0');
+        const ms = String(milliseconds).padStart(2, '0');
 
         this.time = `${mm}:${ss}:${ms}`;
-
         return this.time;
     },
+
     stopTimer() {
-
         clearInterval(this.intervalId);
+        this.intervalId = null;  // <-- NECESSARY RESET
         this.startTime = 0;
-        timer.innerHTML = '00:00:00';
-
-        this.time = 0;
-
-        //document.querySelector('#timer').innerHTML = '';
+        this.time = "00:00:00";
+        timer.innerHTML = this.time;
     }
-}
+};
