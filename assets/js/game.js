@@ -215,7 +215,6 @@ function gameOn() {
     gameTimer.startTimer();
 }
 
-
 //debbug to test timer stop, to delete for presentation
 timer.addEventListener('click', function(event) {
     gameTimer.stopTimer();

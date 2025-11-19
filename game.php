@@ -135,7 +135,7 @@ if (isset($_POST['text'])) {
                 }
                 ?>
             </div>
-            <form action="" method="POST">
+            <form id="messageSenderForm" action="" method="POST">
                 <textarea name="text" id="text" placeholder="Your message..."></textarea>
                 <button class="send-button" type="submit" value="Send"><i class="ri-send-plane-fill"></i></button>
             </form>
