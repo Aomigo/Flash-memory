@@ -80,6 +80,7 @@ main {
 }
 
 .card {
+    position: relative;
     background-color: yellow;
     border-radius: 20px;
     cursor: pointer;
@@ -104,13 +105,40 @@ main {
     height: 80px;
 }
 
+.found::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(
+        45deg,
+        #4d9cff,
+        #ae4dff,
+        #ff4d6d,
+        #4dffb8,
+        #4d9cff
+    );
+    background-size: 400% 400%;
+    animation: glowmove 6s linear infinite;
+    border-radius: inherit;
+    filter: blur(8px);
+    z-index: -1;
+}
+
+.found::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+
 
 .turning {
     animation: turning 0.4s;
 }
 
 .turning-back {
-    animation: turning-back 1.2s;
+    animation: turning-back 1.0s;
 }
 
 
@@ -403,6 +431,13 @@ box-shadow: 0px 0px 500px 300px #000000;
     100% {
         transform: rotateY(0deg);
     }
+}
+
+
+@keyframes glowmove {
+    0%   { background-position: 0% 50%; }
+    50%  { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 @media (max-width : 768px) {
