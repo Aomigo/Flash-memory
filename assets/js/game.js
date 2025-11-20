@@ -68,6 +68,7 @@ difficulty.addEventListener('change', function () {
                 image.classList.add('card')
                 image.id = i
                 gameField.appendChild(image)
+
             }
 
             break;
@@ -175,13 +176,11 @@ function shuffleArray(array) {
 
 //game starting
 function gameOn() {
-    gameTimer.startTimer();
+    const cards = document.querySelectorAll('.card');
     let turned = 0;
     let locked = false;
     let choseArray = [];
-
-    const cards = document.querySelectorAll('.card');
-
+    gameTimer.startTimer();
     cards.forEach(card => {
         card.classList.remove('found')
         card.style.backgroundColor = 'yellow';
