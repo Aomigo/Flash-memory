@@ -94,7 +94,7 @@ if (isset($_POST['text'])) {
                 <p>Power Of Memory</p>
             </div>
             <div class="chat">
-                <div class="foreign-text text">
+                <div id="cat" class="foreign-text text">
                     <img class="pp" src="assets/images/picture.jpg" alt="profile picture">
                     <div class="wrapper-bubble">
                         <div class="bubble">
@@ -110,7 +110,7 @@ if (isset($_POST['text'])) {
                         $profile = $message['picture'];
                     }
                     if ($message['user_id'] == $_SESSION['user']['id']) { ?>
-                        <div class="my-text text">
+                        <div class="my-text text" id="myText">
                             <div class="wrapper-bubble me">
                                 <div class="bubble">
                                     <p><?php echo $message['message'] ?></p>
@@ -135,8 +135,11 @@ if (isset($_POST['text'])) {
                 }
                 ?>
             </div>
-            <form id="messageSenderForm" action="" method="POST">
+           <form id="messageSenderForm" action="" method="POST">
                 <textarea name="text" id="text" placeholder="Your message..."></textarea>
+                <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['user']['id']; ?>">
+                <!-- Could use a session stored game ID here -->
+                <input type="hidden" name="game_id" id="game_id" value="1">
                 <button class="send-button" type="submit" value="Send"><i class="ri-send-plane-fill"></i></button>
             </form>
         </div>

@@ -8,25 +8,30 @@ document.querySelector('.global-button').addEventListener('click', function() {
     button.classList.toggle('switch');
 })
 
-messageSenderForm.addEventListener('submit', (event)=>{
-    event.preventDefault();
+// Need to check if messageSenderForm exists to avoid errors 
+if (messageSenderForm) {
+    messageSenderForm.addEventListener('submit', (event)=>{
+        event.preventDefault();
 
-    const message = messageSenderForm.querySelector('#text').value;
+        const message = messageSenderForm.querySelector('#text').value;
+        const userId = messageSenderForm.querySelector('#user_id').value;
+        const gameId = messageSenderForm.querySelector('#game_id').value;
 
-    sendMessage(message);
-})
+        sendMessage(message, userId, gameId);
+    })
+}
 
-function sendMessage(message){
+function sendMessage(message, userId, gameId){
 
-    if(message.lenght < 3){
+    if(message.length < 3){
         return;
     }
 
     const url           = "saveMessage.php";
     const formData      = {};
     formData.message    = message;
-
-    console.log("Sending message:", message); //debbug
+    formData.user_id    = userId;
+    formData.game_id    = gameId;
 
     fetch(url, {
         method: "POST",
@@ -36,17 +41,42 @@ function sendMessage(message){
         body: JSON.stringify(formData)
         }
     )
-    .then(res => res.json(),
-        console.log(res)
-        )
-    .then(data => {
-        alert(data.message);
-        
-    })
-    .catch(err => console.error(err));
+    .then(res => res.json())
+    .then(data => receiveMessage())
+    .catch(err => alert(err));
 }
 
 function receiveMessage(){
-    fetch()
 
+    fetch("getMessage.php")
+    .then(res => res.json())
+    .then(data => updateChat(data.messages))
+}
+
+function updateChat(messages){
+
+    const currentUserText = document.querySelector('.chat');
+    const cat = document.querySelector('#cat');
+
+    message.value = '';
+
+    currentUserText.innerHTML = '';
+    currentUserText.appendChild(cat);
+
+    messages.forEach(e => {
+        const newMessage = document.createElement("div");
+        newMessage.setAttribute('class', "my-text text");
+        newMessage.setAttribute('id', "myText");
+
+        newMessage.innerHTML = `<div class="wrapper-bubble me">
+                                    <div class="bubble">
+                                        <p>${e.message}</p>
+                                    </div>
+                                    <p class="timestamp">${e.timestamp}</p>
+                                </div>`
+
+      currentUserText.appendChild(newMessage);
+    });
+    
+    currentUserText.scrollTop = currentUserText.scrollHeight;
 }
