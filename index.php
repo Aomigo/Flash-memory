@@ -141,12 +141,12 @@
 
             <p>Allez on devine celui ci, c'est ? ... Bah non c'est un diplodocus pas un text, faut suivre un peux !</p>
 
-            <div>
-                <p class="first"><strong>zdvdgerfgsdgergv</strong></p>
-
-                <p class="second">refgesfdvwgrqfsdfg</p>
-
-                <form>
+            <div class="container">
+                <div class="text">
+                    <h1 class="first"><strong>zdvdgerfgsdgergv</strong></h1>
+                    <p class="second">refgesfdvwgrqfsdfg</p>
+                </div>
+                <form class="Esub">
                     <input type="email" name="email" placeholder="Your Email" required>
                     <button type="submit">Validate</button>
                 </form>

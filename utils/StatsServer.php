@@ -21,6 +21,7 @@ $totalConnected = (int)$stmt->fetchColumn();
 // BEST TIME
 
 $bestScore = $pdo->query('SELECT score FROM score ORDER BY score ASC LIMIT 1');
+$best = $bestScore->fetch();
 
 // GAMES PLAYED TODAY
 
@@ -39,7 +40,7 @@ $actualRecord = null;
 // Boucle sur les scores pour détecter les records battus
 foreach ($scores as $s) {
     $value = floatval($s['score']);
-    
+
     // Premier score → c’est le record initial
     if ($actualRecord === null) {
         $actualRecord = $value;

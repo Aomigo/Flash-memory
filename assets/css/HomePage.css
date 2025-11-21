@@ -84,8 +84,9 @@ main {
   background-color: #070320;
   background-image: url(../images/2c640159744c0c53904fbb9a8977ebcab80a3f14.jpg);
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
+  min-height: 600px;
 }
 .WebSiteStats .center{
   text-align: center;
@@ -103,6 +104,7 @@ main {
   max-width: 800px;
   gap: 50px;
   row-gap: 50px;
+  margin: 0 auto;
 }
 
 .WebSiteStats .stat {
@@ -143,7 +145,7 @@ main {
 
 .Team{
   padding: 0px;
-  margin-right: 50px;
+  margin: 0 auto;
 }
 
 .Team .center{
@@ -154,19 +156,79 @@ main {
   width: 352px;
   height: 223;
   border-radius: 20px;
-  gap: 20px;
 }
 .Team .teamImg{
   display: flex;
   flex-direction: row;
+  gap: auto;
 }
 
-.contactUs div{
-  color: #000000;
-  background-color: #fff;
+.contactUs {
   width: 1170px;
   height: 120px;
-  border-radius: 15px;
   padding: 10px 30px;
 }
 
+.contactUs .container {
+    width: 100%;
+    min-height: 100px;
+    padding: 20px;
+    background: white;
+    border-radius: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    gap: 20px;
+}
+
+.contactUs .text {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: black;
+}
+
+.contactUs .text p {
+    margin: 0;
+    padding-left: 10px;
+}
+
+.contactUs .text h1 {
+    margin: 0;
+    padding-left: 10px;
+}
+
+.contactUs .Esub {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 400px;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.contactUs .Esub input {
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 80px 10px 15px;
+    font-size: 16px;
+    outline: none;
+    width: 100%;
+}
+
+.contactUs .Esub button {
+    position: absolute;
+    right: 5px;
+    background: red;
+    color: white;
+    border: none;
+    padding: 7px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+}
