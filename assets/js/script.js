@@ -24,6 +24,7 @@ if (messageSenderForm) {
 function sendMessage(message, userId, gameId){
 
     if(message.length < 3){
+        alert('Your message is too short');
         return;
     }
 
@@ -51,17 +52,18 @@ function receiveMessage(){
     fetch("getMessage.php")
     .then(res => res.json())
     .then(data => updateChat(data.messages))
+    .catch(err => alert(err));
 }
 
 function updateChat(messages){
 
-    const currentUserText = document.querySelector('.chat');
+    const chat = document.querySelector('.chat');
     const cat = document.querySelector('#cat');
 
     message.value = '';
 
-    currentUserText.innerHTML = '';
-    currentUserText.appendChild(cat);
+    chat.innerHTML = '';
+    chat.appendChild(cat);
 
     messages.forEach(e => {
         const newMessage = document.createElement("div");
@@ -75,8 +77,8 @@ function updateChat(messages){
                                     <p class="timestamp">${e.timestamp}</p>
                                 </div>`
 
-      currentUserText.appendChild(newMessage);
+      chat.appendChild(newMessage);
     });
-    
-    currentUserText.scrollTop = currentUserText.scrollHeight;
+
+    chat.scrollTop = chat.scrollHeight;
 }
